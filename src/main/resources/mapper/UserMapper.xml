@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.app.mapper.UserMapper">
+
+    <select id="selectAll" resultType="userVO">
+        SELECT r, user_type, user_status, user_name, user_id
+        FROM
+        (
+            SELECT ROWNUM R, user_type, user_status, user_name, user_id
+            FROM
+            (
+                SELECT user_type, user_status, user_name, user_id
+                FROM TBL_member
+                ORDER BY user_number
+            ) D2
+        <![CDATA[
+        WHERE ROWNUM <= #{page} * #{amount}
+        ) WHERE R > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(USER_NUMBER) FROM TBL_MEMBER
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

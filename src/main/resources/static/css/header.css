@@ -1,0 +1,316 @@
+body {
+  background-color: #f8f8f8;
+  font-family: Pretendard, Pretendard JP, Pretendard Std, -apple-system,
+    system-ui, BlinkMacSystemFont, Roboto, Segoe UI, Helvetica, Arial,
+    Apple SD Gothic Neo, Nanum Gothic, Malgun Gothic, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, sans-serif;
+}
+element.style {
+  position: fixed;
+  padding-right: initial;
+}
+.Aside_box > ul {
+  height: 100%;
+  margin: 0;
+}
+
+@media (min-width: 1200px) {
+  .MainBar_width {
+    margin: 0 auto;
+    height: 50px;
+  }
+}
+@media (min-width: 1200px) {
+  .MainBar_width {
+    width: 87.72%;
+  }
+}
+.MainBar_width {
+  position: relative;
+  max-width: 1060px;
+  height: 50px;
+}
+.NavBar_container {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+  z-index: 800;
+  padding-right: initial;
+}
+.MainBar_flex,
+.MainBar_logoBox {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.MainBar_hamberger {
+  margin-top: -2px;
+  margin-right: 15px;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+button,
+select {
+  text-transform: none;
+}
+button {
+  overflow: visible;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+/*??????????*/
+body {
+  font-family: -apple-system, Helvetica, Arial, "Apple SD Gothic Neo",
+    "Nanum Gothic", "Malgun Gothic" sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333333;
+  background-color: #f8f8fa;
+}
+:root {
+  --nav-height: 50px;
+}
+.icon-logo_new:before {
+  content: "\e992";
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.menu_name_list {
+  height: inherit;
+  text-align: center;
+  margin: 0;
+}
+ol,
+ul {
+  list-style: none;
+}
+@media (min-width: 1200px) {
+  .menu_name {
+    display: none;
+  }
+}
+/*
+  나중에 적용
+  .menu_name_list .selectedNav {
+    -webkit-box-shadow: inset 0 -2px #258bf7;
+    box-shadow: inset 0 -2px #258bf7;
+  }
+  */
+.menu_name_list li {
+  height: inherit;
+  display: inline-block;
+}
+.menu_name_list li a {
+  position: relative;
+  vertical-align: middle;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  padding: 15px;
+  display: inline-block;
+}
+a,
+a:active,
+a:hover,
+a:visited {
+  color: inherit;
+}
+.menu_name_list li:after {
+  height: 100%;
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+}
+.menu_name_list li a {
+  position: relative;
+  vertical-align: middle;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  padding: 15px;
+  display: inline-block;
+}
+a,
+a:active,
+a:hover,
+a:visited {
+  color: inherit;
+}
+.menu_name_list li a > em {
+  position: absolute;
+  top: 10px;
+  right: -5px;
+  pointer-events: none;
+  font-style: normal;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+:not(svg) {
+  transform-origin: 0px 0px;
+}
+.menu_name_list li:after {
+  height: 100%;
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+}
+.Aside_box {
+  height: 100%;
+  padding: 10px 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+.Aside_box > ul li {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.Aside_box > ul li .searchButton {
+  position: relative;
+  margin-top: 5px;
+}
+@media (min-width: 1200px) {
+  .Aside_box > ul li > * {
+    padding: 0 10px;
+  }
+}
+.Aside_box > ul li > * {
+  height: 100%;
+  padding: 0 5px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+  line-height: 1;
+}
+.Aside_box > ul li .signUpButton {
+  margin-right: 6px;
+  line-height: 1.4;
+}
+@media (min-width: 1200px) {
+  .Aside_box > ul li > * {
+    padding: 0 10px;
+  }
+}
+
+.Aside_box > ul li > * {
+  height: 100%;
+  padding: 0 5px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+  line-height: 1;
+}
+.Aside_box > ul .leftDivision {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+.Aside_box > ul .leftDivision:before {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 10px;
+  background-color: #e1e2e3;
+  margin: auto 10px;
+}
+.Aside_box > ul li .dashboardButton {
+  font-size: 13px;
+  color: #666;
+  line-height: 30px;
+  height: 30px;
+  border: 1px solid #e1e2e3;
+  border-radius: 15px;
+  padding: 0 10px;
+  margin-left: 15px;
+  font-weight: 400;
+}
+.Aside_box > ul li a {
+  display: inline-block;
+  vertical-align: bottom;
+  line-height: 32px;
+}
+@media (min-width: 1200px) {
+  .Aside_box > ul li > * {
+    padding: 0 10px;
+  }
+}
+.Aside_box > ul li > * {
+  height: 100%;
+  padding: 0 5px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+  line-height: 1;
+}
+.Aside_box > ul li .menuButton {
+  padding-left: 10px;
+  margin-right: 10px;
+}
+@media (min-width: 1200px) {
+  .Aside_box > ul li > * {
+    padding: 0 10px;
+  }
+}
+
+.Aside_box > ul li .menuButton > svg {
+  width: 18px;
+  height: 18px;
+}
+a:-webkit-any-link {
+  cursor: pointer;
+  text-decoration: none;
+}

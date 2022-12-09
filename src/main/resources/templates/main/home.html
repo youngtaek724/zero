@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8" />
+    <title>핫식스-품앗이</title>
+      <!--폰트 관련 css-->
+    <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.3/dist/web/static/pretendard-dynamic-subset.css"
+          />
+    
+     <!--main css-->
+    <link rel="stylesheet" href="/css/main_home.css" type="text/css"/>
+
+     <!--Header css(나중에 파일 분리)-->
+    <link rel = "stylesheet" href = "/css/header.css" type="text/css"/>
+
+    <!--body css-->
+    <link rel="stylesheet" href="/css/slick.css" type="text/css"/>
+
+    <!-- footer css (나중에 파일 분리)-->
+    <link href="/css/footer.css  " rel="stylesheet">
+  </head>
+
+  <!--
+    ******************************************************************
+        매인 페이지 작업 시 id, class, css 모르는 부분은 바로 문의
+
+        퍼블 : 황영택(2022-10-21)
+
+        백 : 미정
+    ******************************************************************
+  -->
+
+  <body>
+    <!--header (나중에 제거)-->
+    <button class="abc">버튼</button>
+    <div id="__next">
+      <div class="NavBar_container">
+          <div class="MainBar_width">
+              <nav class="MainBar_flex">
+                  <div class="MainBar_logoBox">
+                      <div>
+                        <!-- 좌측 상단 햄버거 이미지-->
+                          <button type="button" class="MainBar_hamberger">
+                              <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Ficon-menu.png&amp;w=undefined&amp;q=75" alt="hamberger menu" style="width:17px;height:14px;object-fit:contain">
+                          </button>
+                          <a href="/" class="MainBar_logo">
+                              <!--로고 : 74*16 -->
+                              <i></i>
+                            </a>
+                      </div>
+                  </div>
+                  <ul class="menu_name_list">
+                    <th:block th:each="menu:${menus}">
+                      <li class="" th:object="${menu}">
+                          <a th:href="*{menuCode}" class="read" th:text="*{menuName}">홈</a>
+                      </li>
+                    </th:block>
+                  </ul>
+                  <aside class="Aside_box">
+                      <ul>
+                          <li>
+                              <button class="searchButton" type="button">
+                                  <svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                                      <defs>
+                                          <path id="qt2dnsql4a" d="M15.727 17.273a.563.563 0 10.796-.796l-4.875-4.875-.19-.165a.563.563 0 00-.764.028 5.063 5.063 0 111.261-2.068.562.562 0 101.073.338 6.188 6.188 0 10-1.943 2.894l4.642 4.644z"></path>
+                                      </defs>
+                                      <g fill="none" fill-rule="evenodd">
+                                          <use fill="#333" fill-rule="nonzero" stroke="#333" stroke-width=".3" xlink:href="#qt2dnsql4a"></use>
+                                      </g>
+                                  </svg>
+                              </button>
+                          </li>
+                          <li>
+                              <button class="signUpButton" type="button">회원가입/로그인</button>
+                          </li>
+                          <li class="leftDivision">
+                              <a class="dashboardButton" href="/admin/userList">관리자 페이지</a>
+                          </li>                        
+                      </ul>
+                  </aside>
+              </nav>
+          </div>
+      </div>
+      <!--header 끝 (나중에 제거)-->
+
+      <!---******body 시작*************-->
+      <div class="main_padding main_padding_logout"></div>
+      <main class="main_paddingTop"> 
+          <div id="banner_container" style="margin-bottom: -30px;">
+            <div class="banner">
+              <ul>
+                <li>
+                  <img src="../img/banner6.png"/>
+                </li>
+                <li>
+                  <img src="../img/banner2.jpg"
+                  />
+                </li>
+                <li>
+                  <img src="../img/banner3.jpg"/>
+                </li>
+                <li>
+                  <img src="../img/banner4.jpg"/>
+                </li>
+                <li>
+                  <img src="https://cdn.pixabay.com/photo/2015/07/31/15/01/guitar-869217__340.jpg"/>
+                </li>
+              </ul>
+            </div>
+        </div>  
+        <section class="main_section main__Section_b">
+          <div class="section_wrapper">
+            <hr>
+            <div class="title_textalign">
+              <div class="title__Wrapper">
+                <h2 class="title_header">최근 입고 상품</h2>
+              </div>
+              <a class="title__subtitle" href="#">게시판 전체보기
+                <span class="SvgIcon_SvgIcon__root__8vwon title__subtitle__icon__Hrpwd">
+                    <svg class="SvgIcon_SvgIcon__root__svg__DKYBi" viewBox="0 0 19 19">
+                      <path d="m11.955 9-5.978 5.977a.563.563 0 0 0 .796.796l6.375-6.375a.563.563 0 0 0 0-.796L6.773 2.227a.562.562 0 1 0-.796.796L11.955 9z"></path>
+                    </svg>
+                  </span>
+              </a>
+            </div>
+            <div class="main__Category">
+          
+            <ul class="main_display">
+              <th:block th:each="product:${products}">
+              <li class="main_content_list" th:object="${product}">
+                <a href="#">
+                  <div class="main_content__Thumbnail">
+                    <img src="/images/noImg.png"/>
+                  </div>
+                  <p class="main_content_text" th:text="*{proName}"></p>
+                  <p class="main_content_innerText" th:text="*{proSubTitle}"></p>
+                  <div class="main_content_logo">
+                    <p th:text="*{proOutput}"></p>
+                  </div>
+               </a>
+              </li>
+              </th:block>
+            </ul>
+          </div>
+        </section>
+        <!--그냥 선-->
+        <div class="div_container__NNfRu">
+          <hr class="main_hr" />
+        </div>
+        <!--그냥 선-->
+        <section class="main_section">
+          <div class="section_wrapper">
+            <div class="board_header_a board_header_b">
+              <div class="title_textalign">
+                <div class="title__Wrapper">
+                  <h2 class="title_header">
+                    현재 모집중인 봉사활동
+                  </h2>
+                </div>
+                <a class="title__subtitle" href="#">게시판 전체보기
+                  <span class="SvgIcon_SvgIcon__root__8vwon title__subtitle__icon__Hrpwd">
+                    <svg class="SvgIcon_SvgIcon__root__svg__DKYBi" viewBox="0 0 19 19">
+                      <path d="m11.955 9-5.978 5.977a.563.563 0 0 0 .796.796l6.375-6.375a.563.563 0 0 0 0-.796L6.773 2.227a.562.562 0 1 0-.796.796L11.955 9z"></path>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+             
+            </div>
+            <ul class="main_board_list">
+              <div class="slick-slider articleBanner_marginBtm slick-initialized">
+                <div class="slick-list">
+                  <div class="slick-track" style="
+                      width: 2700px;
+                      opacity: 1;
+                      transform: translate3d(0px, 0px, 0px);
+                    ">
+                    <th:block th:each="product:${products}">
+                    <div class="slick-slide slick-active slick-current" style="outline: none; width: 270px" th:object="${product}">
+                        <li class="articleCard_a articleBanner__card" >
+                          <a href="#" class="ArticleCard__link">
+                            <div class="Thumbnail_card undefined">
+                              <img src="/images/noImg.png" alt="" class="Thumbnail_img undefined"/>
+                            </div>
+                            <div class="undefined">
+                              <p class="articleCard_content" th:text="*{proName}">빨래밟기</p>
+                              <p class="ArticleCard__category" th:text="*{proSubTitle}">#봉사 #저강도 #밟기</p>
+                            </div>
+                          </a>
+                        </li>
+                    </div>
+                    </th:block>
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </section>
+
+        <div class="div_container__NNfRu">
+          <hr class="main_hr" />
+        </div>
+
+        <section class="main_section">
+          <div class="section_wrapper">
+            <div class="board_header_a board_header_b">
+              <div class="title_textalign">
+                <div class="title__Wrapper">
+                  <h2 class="title_header">
+                    봉사 인증 게시판
+                  </h2>
+                </div>
+                <a class="title__subtitle" href="#">게시판 전체보기
+                  <span class="SvgIcon_SvgIcon__root__8vwon title__subtitle__icon__Hrpwd">
+                    <svg class="SvgIcon_SvgIcon__root__svg__DKYBi" viewBox="0 0 19 19">
+                    <path
+                      d="m11.955 9-5.978 5.977a.563.563 0 0 0 .796.796l6.375-6.375a.563.563 0 0 0 0-.796L6.773 2.227a.562.562 0 1 0-.796.796L11.955 9z"
+                    ></path></svg></span
+              ></a>
+              </div>           
+            </div>
+            <ul class="main_board_list">
+              <div
+                class="slick-slider articleBanner_marginBtm slick-initialized"
+                dir="ltr"
+              >
+                <div class="slick-list">
+                  <div
+                    class="slick-track"
+                    style="
+                      width: 2700px;
+                      opacity: 1;
+                      transform: translate3d(0px, 0px, 0px);
+                    "
+                  >
+                    <div
+                      data-index="0"
+                      class="slick-slide slick-active slick-current"
+                      style="outline: none; width: 270px"
+                    >
+                      <div>
+                        <li class="articleCard_a articleBanner__card">
+                          <a href="" class="ArticleCard__link">
+                            <div class="Thumbnail_card undefined">
+                              <img src="/images/vol.jpg" alt="" class="Thumbnail_img undefined"/>
+                            </div>
+                            <div class="undefined">
+                              <p class="articleCard_content">
+                                빨간안경
+                              </p>
+                              <p class="ArticleCard__category">
+                                #마케팅·광고 #브랜딩 #취업/이직
+                              </p>
+                            </div></a
+                          >
+                        </li>
+                      </div>
+                    </div>
+                    <div
+                      class="slick-slide slick-active slick-current"
+                      style="outline: none; width: 270px"
+                    >
+                      <div>
+                        <li class="articleCard_a articleBanner__card">
+                          <a href="" class="ArticleCard__link">
+                            <div class="Thumbnail_card undefined">
+                              <img src="/images/vol2.jpg" alt="" class="Thumbnail_img undefined"/>
+                            </div>
+                            <div class="undefined">
+                              <p class="articleCard_content">
+                                빨간안경
+                              </p>
+                              <p
+                                class="ArticleCard__category"
+                              >
+                                #마케팅·광고 #브랜딩 #취업/이직
+                              </p>
+                            </div></a
+                          >
+                        </li>
+                      </div>
+                    </div>
+                    <div
+                      class="slick-slide slick-active slick-current"
+                      style="outline: none; width: 270px"
+                    >
+                      <div>
+                        <li class="articleCard_a articleBanner__card">
+                          <a href="#" class="ArticleCard__link">
+                            <div class="Thumbnail_card undefined">
+                              <img src="/images/vol3.jpg" alt="" class="Thumbnail_img undefined"/>
+                            </div>
+                            <div class="undefined">
+                              <p class="articleCard_content">
+                                빨간안경
+                              </p>
+                              <p class="ArticleCard__category">
+                                #마케팅·광고 #브랜딩 #취업/이직
+                              </p>
+                            </div>
+                          </a>
+                        </li>
+                      </div>
+                    </div>
+                    <div
+                      class="slick-slide slick-active slick-current"
+                      style="outline: none; width: 270px"
+                    >
+                      <div>
+                        <li class="articleCard_a articleBanner__card">
+                          <a href="#" class="ArticleCard__link">
+                            <div class="Thumbnail_card undefined">
+                              <img src="/images/vol4.jpg" alt="" class="Thumbnail_img undefined"/>
+                            </div>
+                            <div class="undefined">
+                              <p class="articleCard_content">
+                                빨간안경
+                              </p>
+                              <p
+                                class="ArticleCard__category"
+                              >
+                                #마케팅·광고 #브랜딩 #취업/이직
+                              </p>
+                            </div></a
+                          >
+                        </li>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </section>
+        <!--footer 시작-->
+        
+    </div>
+    <footer class="Footer_footerClass__OWEZy">
+      <div class="Footer_rowClass__bFAtS">
+        <div class="NavLinks_NavLinks__xaNkJ">
+          <div class="NavLinks_NavLinks__logo__MCbfZ">
+            <!--이곳에 기업의 로고가 들어갑니다-->
+            <img
+              src="../img/hot6.jpg"
+              alt="wanted"
+              style="width: 80px; height: 50px;"
+            />  
+          </div>
+          <div class="NavLinks_NavLinks__links__bQozT">
+            <a
+              href="https://www.wantedlab.com/"
+              class=""
+              >기업소개</a
+            ><a
+              href="https://www.wanted.co.kr/terms"
+              class=""
+              >이용약관</a
+            ><a
+              href="https://www.wanted.co.kr/privacy"
+              class=""
+              >개인정보 처리방침</a
+            ><a
+              href="helpDesk.html"
+              class=""
+              >고객센터</a
+            >
+          </div>
+        </div>
+        <div class="SocialLinks_SocialLinks__hZutB">
+          <a
+            href=""
+            class=""
+            ><img
+              src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Fsocial_instagram.png&amp;w=20&amp;q=100"
+              alt="instagram" /></a
+          ><a
+            href=""
+            class=""
+            ><img
+              src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Fsocial_youtube.png&amp;w=25&amp;q=100"
+              alt="youtube" /></a
+          ><a
+            href=""
+            class=""
+            ><img
+              src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Fsocial_facebook.png&amp;w=20&amp;q=100"
+              alt="facebook" /></a
+          ><a
+            href=""
+            class=""
+            ><img
+              src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Fsocial_blog.png&amp;w=20&amp;q=100"
+              alt="blog" /></a
+          ><a
+            href=""
+            class=""
+            ><img
+              src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Fsocial_kakao.png&amp;w=19&amp;q=100"
+              alt="kakao" /></a
+          ><a
+            href=""
+            class=""
+            ><img
+              src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Fsocial_post.png&amp;w=20&amp;q=100"
+              alt="post" /></a
+          ><a
+            href=""
+            class=""
+            ><img
+              src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Fsocial_apple.png&amp;w=17&amp;q=100"
+              alt="apple" /></a
+          ><a
+            href=""
+            class=""
+            ><img
+              src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Fsocial_google.png&amp;w=17&amp;q=100"
+              alt="google"
+          /></a>
+        </div>
+      </div>
+      <div class="Footer_rowClass__bFAtS Footer_border__k1rgk">
+        <p class="Footer_footerText__CTqnd kr">
+          이곳에 Footer의 내용을 적습니다<br>
+          ex) 6조 파이팅
+        </p>
+        <div class="LocaleSelect_localeSelectClass__7TvCY">
+          <img
+            class="countryIcon"
+            src="https://static.wanted.co.kr/images/userweb/ico_KR.svg"
+            alt="country flag KR"
+          /><select>
+            <option value="KR">한국 (한국어)</option>
+            <!--추후 선택
+            <option value="JP">日本 (日本語)</option>
+            <option value="WW">Worldwide (English)</option>
+            <option value="SG">Singapore (English)</option></select
+          ><i class="icon-arrow_bottom_fill"></i>
+          -->
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script th:inline="javascript">
+
+      //사용할 배너
+
+      var $banner = $(".banner").find("ul");
+      var $bannerWidth = $banner.children().outerWidth(); 
+      var $bannerHeight = $banner.children().outerHeight(); 
+      var $bannerLength = $banner.children().length; 
+      var rollingId;
+      let menuCode = [[${menuCode}]];
+      rollingId = setInterval(function () {
+        rollingStart();
+      }, 10000);
+
+      function rollingStart() {
+        $banner.css("width", $bannerWidth * $bannerLength + "px");
+        $banner.css("height", $bannerHeight + "px");
+        $banner.animate({ left: -$bannerWidth + "px" }, 3000, function () {
+          $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
+          $(this).find("li:first").remove();
+          $(this).css("left", 0);
+        });
+      }
+      const $read = $("a.read");
+      $read.on("click", function(e){
+        e.preventDefault();
+        let code = $(this).attr("href");
+        let page = "";
+        switch (code) {
+          case '000' :
+             page = "/main/home"
+             break;
+           case '001' :
+             code='001'
+             page = "/main/helpDesk"
+             break;
+        }
+        location.href = page;
+      });
+
+    $("a.write").on("click", function(e){
+      e.preventDefault();
+      location.href = "/board/write";
+    });
+
+    $pages.on("click", function(e){
+      e.preventDefault();
+      $(document.pageForm.page).val($(this).attr("href"));
+      document.pageForm.submit();
+    });
+
+
+  </script>
+
+
+
+</html>

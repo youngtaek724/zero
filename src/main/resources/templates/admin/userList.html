@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="kor" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="/css/styles2.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/styles2.css" type="text/css">
+</head>
+<body class="body-container">
+<nav class="topnav navbar-dark bg-dark">
+    <!-- logo 이름-->
+    <a class="logo" href="/admin/adm_main">로고가 들어갑니다</a>
+    <a class="logo" th:href="@{/admin/goHome}">메인 페이지 이동</a>
+</nav>
+<div id="sideNav">
+    <div id="sideNav_nav">
+        <nav class="sb-sidenav sb-sidenav-dark">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="menu-title">문제 리스트</div>
+                    <a class="nav-link" href="/admin/productList">
+                        상품목록
+                    </a>
+                    <a class="nav-link" href="/admin/adm_contestList">
+                        재고현황
+                    </a>
+                    <div class="menu-title">회원 정보</div>
+                    <a class="nav-link" href="/admin/userList">
+                        회원 목록
+                    </a>
+                    <a class="nav-link" href="/admin/adm_boardList">
+                        작성 게시글
+                    </a>
+                    <a class="nav-link" href="/admin/adm_inquiryList">
+                        문의글
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="main_content">
+        <main>
+            <div class="main_padding">
+                <h1 class="main-header">회원 목록</h1>
+
+                <div class="card main-margin">
+                    <div class="container">
+                        <div class="inner">
+                            <input type="search">
+                            <img src="/images/search.png">
+                            <div class="searching">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                        <table id = user_table class="type09">
+                            <thead>
+                            <tr>
+                                <th class="no">번호</th>
+                                <th>아이디</th>
+                                <th>이름</th>
+                                <th>상태</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="user:${users}">
+                                <tr th:object="${user}">
+                                    <td class="no" th:text="*{r}">1</td>
+                                    <td th:text="*{userId}"></td>
+                                    <td th:text="*{userName}">김유저</td>
+                                    <td th:text="*{userStatus}"></td>
+                                </tr>
+                            </th:block>
+                            </tbody>
+                        </table>
+                        </table>
+                    </div>
+                </div>
+                <div class="page_wrap" th:object="${pagination}">
+                    <div class="page_nation"  style="text-align: center">
+                        <a class="changePage" th:href="*{startPage - 1}" th:if="*{prev}"><code><</code></a>
+                        <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                            <a class="changePage" th:href="${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                            <code th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                        </th:block>
+                        <a class="changePage" th:href="*{endPage + 1}" th:if="*{next}"><code>></code></a>
+                    </div>
+                    <form th:action="@{/admin/userList}" th:object="${criteria}" name="pageForm">
+                        <input type="hidden" th:field="*{page}">
+                        <input type="hidden" th:field="*{amount}">
+                    </form>
+                </div>
+            </div>
+        </main>
+        <br>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+    let $pages = $("a.changePage");
+    $pages.on("click", function(e){
+        e.preventDefault();
+        $(document.pageForm.page).val($(this).attr("href"));
+        document.pageForm.submit();
+    });
+</script>
+</body>
+</html>
