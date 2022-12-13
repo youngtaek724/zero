@@ -66,9 +66,9 @@
                             <tbody>
                             <th:block th:each="user:${users}">
                                 <tr th:object="${user}">
-                                    <td class="no" th:text="*{r}">1</td>
+                                    <td class="no" th:text="*{r}"></td>
                                     <td th:text="*{userId}"></td>
-                                    <td th:text="*{userName}">김유저</td>
+                                    <td th:text="*{userName}"></td>
                                     <td th:text="*{userStatus}"></td>
                                 </tr>
                             </th:block>

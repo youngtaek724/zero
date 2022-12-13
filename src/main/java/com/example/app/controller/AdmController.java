@@ -1,16 +1,20 @@
 package com.example.app.controller;
 
+import com.example.app.domain.vo.CmdList;
 import com.example.app.domain.vo.Criteria;
 import com.example.app.domain.vo.PageDTO;
 import com.example.app.service.AdmService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin/*")
@@ -38,10 +42,24 @@ public class AdmController {
         }
         model.addAttribute("products",admService.fintAllProduct(criteria) );
         model.addAttribute("pagination", new PageDTO().createPageDTO(criteria,admService.getProTotal()));
+        model.addAttribute("cmdList", new CmdList());
+    }
+
+    @PostMapping("/productList")
+    public void productSearch(String comCd, String text, Model model, Criteria criteria, CmdList cmdList){
+        if(criteria.getPage() == 0){
+            criteria.create(1, 20);
+        }
+
+        model.addAttribute("products",admService.fintAllProduct2(criteria, comCd, text) );
+        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria,admService.getProTotal()));
+        model.addAttribute("cmdList", cmdList);
     }
     // 메인 페이지 이동
     @GetMapping("/goHome")
     public RedirectView goHome(RedirectAttributes redirectAttributes){
         return new RedirectView("/main/home");
     }
+
+
 }

@@ -7,10 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @NoArgsConstructor
-public class ProductVO {
+public class SerialVO {
 
-    private int proId;
-    private String proCategoryId;
     private String proCode;
     private String proName;
     private int proInput;

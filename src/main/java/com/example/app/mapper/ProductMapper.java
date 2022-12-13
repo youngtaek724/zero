@@ -17,8 +17,12 @@ public interface ProductMapper {
     public List<MenuVO> showMenu();
 
 // Admin 페이지 전체 상품 조회
-    public List<ProductVO> showAllProduct(Criteria criteria);
+    public List<ProductVO> showAllProduct3(Criteria criteria, String cmdCd, String text);
 
+    public List<ProductVO> showAllProduct(Criteria criteria);
 // Admin 상품 전체 개수
     public int getProTotal();
+
+    public List<ProductVO> showAllProduct2(Criteria criteria, String cmdCd);
+
 }

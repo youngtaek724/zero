@@ -632,13 +632,24 @@ img {
 
 .inner {
   position: relative;
-  width: 600px;
+  width: 40%;
   height: 40px;
   margin: 20px auto;
   border: 1px solid #bdc1c6;
   border-radius: 20px;
+  float: left;
+  margin-left: 20px;
 }
-
+.inner2 {
+  position: relative;
+  width: 10%;
+  height: 40px;
+  margin: 20px auto;
+  border: 1px solid #bdc1c6;
+  border-radius: 20px;
+  float: left;
+  text-align: center;
+}
 input {
   width: 90%;
   height: 100%;
@@ -685,4 +696,9 @@ i:hover {
 
 a {
   text-decoration: none;
+}
+
+.move{
+  position: relative;
+  left: 20%;
 }

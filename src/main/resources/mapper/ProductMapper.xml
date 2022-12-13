@@ -14,16 +14,32 @@
         WHERE ROWNUM BETWEEN 1 AND 4
     </select>
 
+
     <select id="showMenu" resultType="menuVO">
         SELECT MENU_CODE, MENU_NAME FROM TBL_MENU ORDER BY MENU_CODE
     </select>
 
     <!-- Admin 제품 전체 조회-->
     <select id="showAllProduct" resultType="productVO">
-        SELECT PRO_ID, PRO_CATEGORYID , PRO_CODE , PRO_NAME , PRO_INPUT , PRO_OUTPUT , PRO_SHOWYN, PRO_STOCK , PRO_TYPE
-        FROM TBL_PRODUCT tp ORDER BY PRO_ID DESC
+    SELECT PRO_ID, PRO_CATEGORYID , PRO_CODE , PRO_NAME , PRO_INPUT , PRO_OUTPUT , PRO_SHOWYN,
+    PRO_STOCK , PRO_TYPE FROM TBL_PRODUCT tp ORDER BY PRO_ID  DESC
     </select>
 
+
+
+    <!-- Admin 제품 전체 정렬-->
+    <select id="showAllProduct2" resultType="productVO">
+        SELECT PRO_ID, PRO_CATEGORYID , PRO_CODE , PRO_NAME , PRO_INPUT , PRO_OUTPUT , PRO_SHOWYN, PRO_STOCK , PRO_TYPE
+        FROM TBL_PRODUCT tp ORDER BY ${cmdCd} DESC
+    </select>
+
+    <select id="showAllProduct3" resultType="productVO">
+        SELECT PRO_ID, PRO_CATEGORYID , PRO_CODE , PRO_NAME , PRO_INPUT , PRO_OUTPUT , PRO_SHOWYN, PRO_STOCK , PRO_TYPE
+        FROM TBL_PRODUCT tp
+        WHERE ${cmdCd} LIKE #{text}
+        ORDER by PRO_ID DESC
+
+    </select>
     <!-- Admin 상품 전체 개수 -->
     <select id="getProTotal" resultType="_int">
         SELECT COUNT(PRO_ID) FROM TBL_PRODUCT

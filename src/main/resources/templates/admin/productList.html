@@ -45,15 +45,27 @@
                     <div class="main_padding">
                         <h1 class="main-header">상품 목록</h1>
 
+
                         <div class="card main-margin">
                                 <div class="container">
+                                    <div class="move" th:object="${cmdList}">
+                                    <form method="post" th:action="@{/admin/productList}">
+                                        <select class="inner2" id="comCd" name="comCd" th:value="*{roomCnt}">
+                                            <option th:selected="*{roomCnt}=='0'" th:text="*{cmd0}"></option>
+                                            <option th:selected="*{roomCnt}=='1'" th:text="*{cmd1}"></option>
+                                            <option th:selected="*{roomCnt}=='2'" th:text="*{cmd2}"></option>
+                                            <option th:selected="*{roomCnt}=='3'" th:text="*{cmd3}"></option>
+                                            <option th:selected="*{roomCnt}=='4'" th:text="*{cmd4}"></option>
+                                        </select>
                                     <div class="inner">
-                                        <input type="search">
+                                        <input type="search" th:field = "*{text}" id = "test">
                                         <img src="/images/search.png">
                                         <div class="searching">
                                             <i class="fas fa-search"></i>
                                         </div>
-                                </div>
+                                    </div>
+                                    </form>
+                                    </div>
                                 <table id = user_table class="type09">
                                     <thead>
                                         <tr>
