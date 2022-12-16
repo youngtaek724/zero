@@ -13,7 +13,6 @@ public class ReplyVO {
     private Long replyNumber;
     @NonNull
     private String replyContent;
-    @NonNull
     private String replyWriter;
     private String replyRegisterDate;
     private String replyUpdateDate;

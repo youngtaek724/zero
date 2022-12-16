@@ -21,10 +21,9 @@ let replyService = (function(){
             }
         });
     }
-    function getList(param, callback, error){
-        let page = param.page || 1;
+    function getList(boardNumber, callback, error){
         $.ajax({
-            url: "/reply/list/" + param.boardNumber + "/" + page,
+            url: "/reply/serial/" + boardNumber,
             success: function(replies){
                 if (callback){
                     callback(replies);
@@ -37,7 +36,6 @@ let replyService = (function(){
             url: "/reply/" + replyNumber,
             type: "get",
             success: function(reply){
-                console.log(reply);
             }
         })
     }

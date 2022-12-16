@@ -24,15 +24,6 @@ public class AdmController {
     public void main(){
 
     }
-    // 회원 정보 페이지
-    @GetMapping("/userList")
-    public void userList(Criteria criteria, Model model){
-        if(criteria.getPage() == 0){
-            criteria.create(1, 10);
-        }
-        model.addAttribute("users",admService.findAllUser(criteria) );
-        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria,admService.getTotal()));
-    }
 
     // 상품 정보 페이지
     @GetMapping("/productList")
@@ -44,17 +35,38 @@ public class AdmController {
         model.addAttribute("pagination", new PageDTO().createPageDTO(criteria,admService.getProTotal()));
         model.addAttribute("cmdList", new CmdList());
     }
-
     @PostMapping("/productList")
     public void productSearch(String comCd, String text, Model model, Criteria criteria, CmdList cmdList){
         if(criteria.getPage() == 0){
             criteria.create(1, 20);
         }
-
         model.addAttribute("products",admService.fintAllProduct2(criteria, comCd, text) );
         model.addAttribute("pagination", new PageDTO().createPageDTO(criteria,admService.getProTotal()));
         model.addAttribute("cmdList", cmdList);
     }
+
+    // serial List 전체조회
+    @GetMapping
+    public void serialList(Criteria criteria, Model model){
+        if(criteria.getPage() == 0){
+            criteria.create(1, 20);
+        }
+        model.addAttribute("serials",admService.showAllSerial(criteria) );
+        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria,admService.getProTotal()));
+        model.addAttribute("cmdList", new CmdList());
+    }
+
+    // 회원 정보 페이지
+    @GetMapping("/userList")
+    public void userList(Criteria criteria, Model model){
+        if(criteria.getPage() == 0){
+            criteria.create(1, 10);
+        }
+        model.addAttribute("users",admService.findAllUser(criteria) );
+        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria,admService.getTotal()));
+        model.addAttribute("cmdList", new CmdList());
+    }
+
     // 메인 페이지 이동
     @GetMapping("/goHome")
     public RedirectView goHome(RedirectAttributes redirectAttributes){
@@ -62,4 +74,13 @@ public class AdmController {
     }
 
 
+    @GetMapping("/adm_inquiryList")
+    public void inquiry(){
+
+    }
+
+    @GetMapping("/replyTest")
+    public void reTest(Model model, long boardNumber){
+        model.addAttribute("board", admService.showBoard(boardNumber));
+    }
 }

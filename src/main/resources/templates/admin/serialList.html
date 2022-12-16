@@ -7,9 +7,6 @@
         <title>관리자 페이지</title>
         <link rel="stylesheet" href="/css/styles2.css" type="text/css"/>
         <link rel="stylesheet" href="/css/styles2.css" type="text/css">
-        <style>
-
-        </style>
     </head>
     <body class="body-container">
         <nav class="topnav navbar-dark bg-dark">
@@ -46,8 +43,7 @@
             <div id="main_content">
                 <main>
                     <div class="main_padding">
-                        <h1 class="main-header">상품 목록</h1>
-
+                        <h1 class="main-header">재고 현황</h1>
 
                         <div class="card main-margin">
                                 <div class="container">
@@ -69,66 +65,36 @@
                                     </div>
                                     </form>
                                 </div>
-                                    <div id="root">
-
-                                        <button type="button" id="modal_opne_btn">등록</button>
-                                    </div>
-                                    <div id="modal">
-
-                                        <div class="modal_content">
-                                            <h2 class="serial_name">내용</h2>
-                                            <p>모달 창 입니다.</p>
-
-                                            <button type="button" id="modal_close_btn">모달 창 닫기</button>
-                                            <table id = user_table class="type09">
-                                                <thead>
-                                                <tr>
-                                                    <th>시리얼 번호</th>
-                                                    <th>입고일</th>
-                                                    <th>출고일</th>
-                                                    <th>판매여부</th>
-                                                    <th>상태1</th>
-                                                    <th>상태2</th>
-                                                    <th>위치</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody class="replies">
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <div class="modal_layer"></div>
-                                    </div>
                                 <table id = user_table class="type09">
                                     <thead>
                                         <tr>
-                                            <th class="no">번호</th>
-                                            <th>카테고리</th>
-                                            <th>코드</th>
-                                            <th>이름</th>
-                                            <th>입고가</th>
-                                            <th>출고가</th>
-                                            <th>진열여부</th>
-                                            <th>재고</th>
-                                            <th>타입</th>
+                                            <th class="name">상품명</th>
+                                            <th class="serial">시리얼 번호</th>
+                                            <th class="code">코드</th>
+                                            <th class="date">입고일</th>
+                                            <th class="date">출고일</th>
+                                            <th class="status">상태1</th>
+                                            <th class="status">상태2</th>
+                                            <th class="loc">위치</th>
+
                                         </tr>
                                       </thead>
                                       <tbody>
-                                      <th:block th:each="product:${products}">
-                                        <tr th:object="${product}">
-                                            <td class="no" th:text="*{proId}"/>
-                                            <td th:text="*{proCategoryId}"/>
+                                      <th:block th:each="serial:${serials}">
+                                        <tr th:object="${serial}">
+                                            <td class="no" th:text="*{proName}"/>
+                                            <td th:text="*{proSerial}"/>
                                             <td th:text="*{proCode}"/>
-                                            <td class = "open" id = "open_a" th:text="*{proName}" th:href="*{proCode}"/>
-                                            <td th:text="*{proInput}"/>
-                                            <td th:text="*{proOutput}"/>
-                                            <td th:text="*{proShowYN}"/>
-                                            <td th:text="*{proStock}"/>
-                                            <td th:text="*{proType}"/>
+                                            <td th:text="*{proInDate}"/>
+                                            <td th:text="*{proOutDate}"/>
+                                            <td th:text="*{proDstatus}"/>
+                                            <td th:text="*{proQstatus}"/>
+                                            <td th:text="*{proLocation}"/>
+
                                         </tr>
                                       </th:block>
                                       </tbody>
+                                    </table>
                                 </table>
                             </div>
                         </div>
@@ -153,51 +119,7 @@
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script src="/js/reply.js"></script>
-        <script th:inline="javascript">
-            let boardNumber = [[${proCode}]];
-            let $open = $(".open");
-            function getList(){
-                replyService.getList(boardNumber, showList);
-            }
-
-            function showList(replyDTO){
-                let text = "";
-                if(replyDTO.length == 0){
-                    text += "<div style='text-align: center; color :red; position : absolute; top :40%; left : 38%;'> 조회된 데이터가 존재하지 않습니다"
-                    text += "</div>"
-                }else{
-                    replyDTO.forEach(reply =>{
-                        text += "<tr>"
-                        text += "<td>"+reply.proSerial+"</td>"
-                        text += "<td>"+reply.proInDate+"</td>"
-                        text += "<td>"+reply.proOutDate+"</td>"
-                        text += "<td>"+reply.proSellYN+"</td>"
-                        text += "<td>"+reply.proDstatus+"</td>"
-                        text += "<td>"+reply.proQstatus+"</td>"
-                        text += "<td>"+reply.proLocation+"</td>"
-                        text += "</tr>"
-                    });
-                }
-                $("tbody.replies").html(text);
-            }
-
-            document.getElementById("modal_opne_btn").onclick = function() {
-                document.getElementById("modal").style.display="block";
-            }
-
-            document.getElementById("modal_close_btn").onclick = function() {
-                document.getElementById("modal").style.display="none";
-            }
-
-
-            $open.on("click", function (e) {
-                e.preventDefault();
-                boardNumber = $(this).attr("href")
-                $(".serial_name").text($(this).text());
-                document.getElementById("modal").style.display="block";
-                getList();
-            })
+        <script>
         </script>
     </body>
  </html>

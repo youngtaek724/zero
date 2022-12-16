@@ -3,14 +3,15 @@
 <mapper namespace="com.example.app.mapper.UserMapper">
 
     <select id="selectAll" resultType="userVO">
-        SELECT r, user_type, user_status, user_name, user_id
+        SELECT r, user_status, user_name, user_id, USER_GENDER, USER_DATE, USER_REGIDATE,USER_NUMBER
         FROM
         (
-            SELECT ROWNUM R, user_type, user_status, user_name, user_id
+            SELECT ROWNUM R, user_status, user_name, user_id, USER_GENDER, USER_DATE, USER_REGIDATE,USER_NUMBER
             FROM
             (
-                SELECT user_type, user_status, user_name, user_id
+                SELECT user_status, user_name, user_id, USER_GENDER, USER_DATE, USER_REGIDATE,USER_NUMBER
                 FROM TBL_member
+                WHERE USER_TYPE = 1
                 ORDER BY user_number
             ) D2
         <![CDATA[
@@ -20,7 +21,7 @@
     </select>
 
     <select id="getTotal" resultType="_int">
-        SELECT COUNT(USER_NUMBER) FROM TBL_MEMBER
+        SELECT COUNT(USER_NUMBER) FROM TBL_MEMBER WHERE USER_TYPE = 1
     </select>
 </mapper>
 

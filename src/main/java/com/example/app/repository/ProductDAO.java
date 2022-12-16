@@ -2,6 +2,7 @@ package com.example.app.repository;
 
 import com.example.app.domain.vo.Criteria;
 import com.example.app.domain.vo.ProductVO;
+import com.example.app.domain.vo.SerialVO;
 import com.example.app.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -25,4 +26,10 @@ public class ProductDAO {
 
     // Admin 페이지 전체 상품 개수
     public int getProTotal() {return  productMapper.getProTotal();}
+
+    // Serial 전체 조회
+    public List<SerialVO> showAllSerial(Criteria criteria){ return productMapper.selectAllSerial(criteria); }
+
+    // Serial 전체 개수 조회
+    public int getTotalSerial(){return productMapper.getTotalSerial();}
 }

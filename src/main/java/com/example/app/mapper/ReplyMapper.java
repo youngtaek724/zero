@@ -2,6 +2,7 @@ package com.example.app.mapper;
 
 import com.example.app.domain.vo.Criteria;
 import com.example.app.domain.vo.ReplyVO;
+import com.example.app.domain.vo.SerialVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,4 +16,5 @@ public interface ReplyMapper {
     public void delete(Long replyNumber);
     public ReplyVO select(Long replyNumber);
     public int getTotal(Long boardNumber);
+    public List<SerialVO> selectAllSerial(String proCode);
 }

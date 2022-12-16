@@ -11,6 +11,6 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor @Qualifier("community") @Primary
-public class CommunityBoardService implements BoardService {
+public class CommunityBoardService{
 
 }

@@ -27,7 +27,7 @@
 
     <update id="update">
         UPDATE TBL_REPLY
-        SET REPLY_CONTENT = #{replyContent}, REPLY_WRITER = #{replyWriter}, REPLY_UPDATE_DATE = SYSDATE
+        SET REPLY_CONTENT = #{replyContent}, REPLY_UPDATE_DATE = SYSDATE
         WHERE REPLY_NUMBER = #{replyNumber}
     </update>
 
@@ -44,6 +44,13 @@
     <select id="getTotal" resultType="_int">
         SELECT COUNT(REPLY_NUMBER) FROM TBL_REPLY
         WHERE BOARD_NUMBER = #{boardNumber}
+    </select>
+
+    <!-- 전체 seial List 조회 -->
+    <select id = "selectAllSerial" resultType="serialVO">
+        SELECT PRO_NAME, PRO_SERIAL, A.PRO_CODE, B.PRO_INDATE, PRO_OUTDATE, PRO_SELLYN,PRO_DSTATUS, PRO_QSTATUS, PRO_LOCATION
+        FROM TBL_PRODUCT A, TBL_SERIAL B
+        WHERE A.PRO_CODE  = B.PRO_CODE and A.PRO_CODE = #{proCode}
     </select>
 </mapper>
 

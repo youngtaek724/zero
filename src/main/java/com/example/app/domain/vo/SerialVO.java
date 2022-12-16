@@ -10,14 +10,19 @@ import org.springframework.stereotype.Component;
 public class SerialVO {
 
     private String proCode;
+    private String proSerial;
     private String proName;
     private int proInput;
     private int proOutput;
     private String proShowYN;
     private String proSellYN;
     private String proInDate;
+    private String proOutDate;
+    private String proDstatus;
+    private String proQstatus;
     private String proSellDate;
     private String proSubTitle;
+    private String proLocation;
     private String proType;
     private int proStock;
 }

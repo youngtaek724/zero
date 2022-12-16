@@ -1,13 +1,16 @@
 package com.example.app.service;
 
 import com.example.app.domain.vo.*;
+import com.example.app.repository.BoardDAO;
 import com.example.app.repository.MenuDAO;
 import com.example.app.repository.ProductDAO;
 import com.example.app.repository.UserDAO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.awt.image.CropImageFilter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,9 +19,18 @@ public class AdmService {
     private final ProductDAO productDAO;
     private final MenuDAO menuDAO;
     private final UserDAO userDAO;
+    private final BoardDAO boardDAO;
 
     // 회원 전체 조회
-    public List<UserVO> findAllUser(Criteria criteria){return userDAO.showAll(criteria);}
+    public List<UserVO> findAllUser(Criteria criteria){
+        List<UserVO> arr = userDAO.showAll(criteria);
+        for(int i = 0; i<arr.size(); i++){
+            if(arr.get(i).getUserRegidate()==null){
+                arr.get(i).setUserRegidate("-");
+            }
+       }
+        return arr;
+    }
 
     // 회원 수 조회
     public int getTotal(){return userDAO.getTotal();}
@@ -56,4 +68,10 @@ public class AdmService {
 
     // Admin 페이지 전체 상품 개수
     public int getProTotal(){return productDAO.getProTotal();}
+
+    // Serial 전체 조회
+    public List<SerialVO> showAllSerial(Criteria criteria){ return productDAO.showAllSerial(criteria); }
+
+    // 댓글 test
+    public BoardVO showBoard(Long boardNumber){return  boardDAO.findBoard(boardNumber);}
 }

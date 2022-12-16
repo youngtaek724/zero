@@ -1,10 +1,12 @@
 package com.example.app.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public interface BoardService {
+@RequiredArgsConstructor
+public class BoardService {
 
 }

@@ -44,6 +44,18 @@
     <select id="getProTotal" resultType="_int">
         SELECT COUNT(PRO_ID) FROM TBL_PRODUCT
     </select>
+
+    <!-- 전체 seial List 조회 -->
+    <select id = "selectAllSerial" resultType="serialVO">
+        SELECT PRO_NAME, PRO_SERIAL, A.PRO_CODE, B.PRO_INDATE, PRO_OUTDATE, B.PRO_SELLYN,PRO_DSTATUS, PRO_QSTATUS, PRO_LOCATION
+        FROM TBL_PRODUCT A, TBL_SERIAL B
+        WHERE A.PRO_CODE  = B.PRO_CODE
+    </select>
+
+    <!-- 전체 Serial Count 조회 -->
+    <select id="getTotalSerial" resultType="_int">
+        SELECT COUNT(PRO_SERIAL) FROM TBL_SERIAL
+    </select>
 </mapper>
 
 

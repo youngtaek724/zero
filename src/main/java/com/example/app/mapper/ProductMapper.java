@@ -3,6 +3,7 @@ package com.example.app.mapper;
 import com.example.app.domain.vo.Criteria;
 import com.example.app.domain.vo.MenuVO;
 import com.example.app.domain.vo.ProductVO;
+import com.example.app.domain.vo.SerialVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,12 +18,14 @@ public interface ProductMapper {
     public List<MenuVO> showMenu();
 
 // Admin 페이지 전체 상품 조회
-    public List<ProductVO> showAllProduct3(Criteria criteria, String cmdCd, String text);
-
     public List<ProductVO> showAllProduct(Criteria criteria);
 // Admin 상품 전체 개수
     public int getProTotal();
-
     public List<ProductVO> showAllProduct2(Criteria criteria, String cmdCd);
+    public List<ProductVO> showAllProduct3(Criteria criteria, String cmdCd, String text);
+// Serial 전체 조회
+    public List<SerialVO> selectAllSerial(Criteria criteria);
 
+// Serial 전체 개수 조회
+    public int getTotalSerial();
 }

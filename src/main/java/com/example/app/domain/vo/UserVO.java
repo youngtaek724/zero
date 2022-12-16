@@ -19,6 +19,15 @@ public class UserVO {
     private String userPhone;
     private String userAddress;
     private String userDate;
-    private String userRegiDate;
+    private String userRegidate;
+
+    public String getUserRegidate() {
+        return userRegidate;
+    }
+
+    public void setUserRegidate(String userRegidate) {
+        this.userRegidate = userRegidate;
+    }
+
     private int r;
 }

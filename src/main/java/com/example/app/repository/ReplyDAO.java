@@ -2,6 +2,7 @@ package com.example.app.repository;
 
 import com.example.app.domain.vo.Criteria;
 import com.example.app.domain.vo.ReplyVO;
+import com.example.app.domain.vo.SerialVO;
 import com.example.app.mapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -36,6 +37,8 @@ public class ReplyDAO {
     public int count(Long boardNumber){
         return replyMapper.getTotal(boardNumber);
     }
+
+    public List<SerialVO> showSerial(String proCode){ return replyMapper.selectAllSerial(proCode);}
 }
 
 

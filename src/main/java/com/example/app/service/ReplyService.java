@@ -2,6 +2,7 @@ package com.example.app.service;
 
 import com.example.app.domain.vo.Criteria;
 import com.example.app.domain.vo.ReplyVO;
+import com.example.app.domain.vo.SerialVO;
 import com.example.app.repository.ReplyDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,10 +32,12 @@ public class ReplyService {
 
     public ReplyVO show(Long replyNumber){
         return new ReplyVO();
-                //replyDAO.findById(replyNumber);
-   }
+        //replyDAO.findById(replyNumber);
+    }
 
     public int count(Long boardNumber){
         return replyDAO.count(boardNumber);
     }
+
+    public List<SerialVO> showAllSerial(String proCode){return replyDAO.showSerial(proCode);}
 }

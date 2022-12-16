@@ -47,29 +47,73 @@
 
                 <div class="card main-margin">
                     <div class="container">
-                        <div class="inner">
-                            <input type="search">
-                            <img src="/images/search.png">
-                            <div class="searching">
-                                <i class="fas fa-search"></i>
+                        <div class="move" th:object="${cmdList}">
+                            <form method="post" th:action="@{/admin/productList}">
+                                <select class="inner2" id="comCd" name="comCd" th:value="*{roomCnt}">
+                                    <option th:selected="*{roomCnt}=='0'" th:text="*{cmd0}"></option>
+                                    <option th:selected="*{roomCnt}=='1'" th:text="*{cmd1}"></option>
+                                    <option th:selected="*{roomCnt}=='2'" th:text="*{cmd2}"></option>
+                                    <option th:selected="*{roomCnt}=='3'" th:text="*{cmd3}"></option>
+                                    <option th:selected="*{roomCnt}=='4'" th:text="*{cmd4}"></option>
+                                </select>
+                                <div class="inner">
+                                    <input type="search" th:field = "*{text}" id = "test">
+                                    <img src="/images/search.png">
+                                    <div class="searching">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="root">
+
+                            <button type="button" id="modal_opne_btn">등록</button>
+                        </div>
+                        <div id="modal">
+
+                            <div class="modal_content">
+                                <h2 class="serial_name">내용</h2>
+                                <p>모달 창 입니다.</p>
+
+                                <button type="button" id="modal_close_btn">모달 창 닫기</button>
+                                <table id = user_table class="type09">
+                                    <thead>
+                                    <tr>
+                                        <th>시리얼 번호</th>
+                                        <th>입고일</th>
+                                        <th>출고일</th>
+                                        <th>판매여부</th>
+                                        <th>상태1</th>
+                                        <th>상태2</th>
+                                        <th>위치</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="replies"/>
+                                </table>
                             </div>
                         </div>
                         <table id = user_table class="type09">
                             <thead>
                             <tr>
                                 <th class="no">번호</th>
-                                <th>아이디</th>
                                 <th>이름</th>
+                                <th>아이디</th>
                                 <th>상태</th>
+                                <th>주문건수</th>
+                                <th>가입일</th>
+                                <th>최근수정일</th>
                             </tr>
                             </thead>
                             <tbody>
                             <th:block th:each="user:${users}">
                                 <tr th:object="${user}">
-                                    <td class="no" th:text="*{r}"></td>
+                                    <td class="no" th:text="*{userNumber}"></td>
+                                    <td class = "open" th:text="*{userName}"></td>
                                     <td th:text="*{userId}"></td>
-                                    <td th:text="*{userName}"></td>
                                     <td th:text="*{userStatus}"></td>
+                                    <td>0</td>
+                                    <td th:text="*{userDate}"></td>
+                                    <td th:text="*{userRegidate}"></td>
                                 </tr>
                             </th:block>
                             </tbody>
@@ -98,8 +142,53 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
+<script src="/js/reply.js"></script>
+<script th:inline="javascript">
+    let boardNumber = [[${proCode}]];
+    let $open = $(".open");
     let $pages = $("a.changePage");
+    function getList(){
+        replyService.getList(boardNumber, showList);
+    }
+
+    function showList(replyDTO){
+        let text = "";
+        if(replyDTO.length == 0){
+            text += "<div style='text-align: center; color :red; position : absolute; top :40%; left : 38%;'> 조회된 데이터가 존재하지 않습니다"
+            text += "</div>"
+        }else{
+            replyDTO.forEach(reply =>{
+                text += "<tr>"
+                text += "<td>"+reply.proSerial+"</td>"
+                text += "<td>"+reply.proInDate+"</td>"
+                text += "<td>"+reply.proOutDate+"</td>"
+                text += "<td>"+reply.proSellYN+"</td>"
+                text += "<td>"+reply.proDstatus+"</td>"
+                text += "<td>"+reply.proQstatus+"</td>"
+                text += "<td>"+reply.proLocation+"</td>"
+                text += "</tr>"
+            });
+        }
+        $("tbody.replies").html(text);
+    }
+
+    document.getElementById("modal_opne_btn").onclick = function() {
+        document.getElementById("modal").style.display="block";
+    }
+
+    document.getElementById("modal_close_btn").onclick = function() {
+        document.getElementById("modal").style.display="none";
+    }
+
+
+    $open.on("click", function (e) {
+        e.preventDefault();
+        boardNumber = $(this).attr("href")
+        $(".serial_name").text($(this).text());
+        document.getElementById("modal").style.display="block";
+        getList();
+    })
+
     $pages.on("click", function(e){
         e.preventDefault();
         $(document.pageForm.page).val($(this).attr("href"));
