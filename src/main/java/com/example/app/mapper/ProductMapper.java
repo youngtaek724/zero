@@ -25,7 +25,8 @@ public interface ProductMapper {
     public List<ProductVO> showAllProduct3(Criteria criteria, String cmdCd, String text);
 // Serial 전체 조회
     public List<SerialVO> selectAllSerial(Criteria criteria);
-
 // Serial 전체 개수 조회
     public int getTotalSerial();
+// product 상세 정보
+    public ProductVO selectProduct(int proId);
 }

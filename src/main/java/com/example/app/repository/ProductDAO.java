@@ -32,4 +32,8 @@ public class ProductDAO {
 
     // Serial 전체 개수 조회
     public int getTotalSerial(){return productMapper.getTotalSerial();}
+
+    // product 상세 조회
+    public ProductVO findProductDetail(int proId){return  productMapper.selectProduct(proId);}
+
 }

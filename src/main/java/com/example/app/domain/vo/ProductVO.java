@@ -22,4 +22,14 @@ public class ProductVO {
     private String proSubTitle;
     private String proType;
     private int proStock;
+    private String proDiscountPer;
+    private String proDiscountYN;
+
+    public String getProInDate() {
+        return proInDate;
+    }
+
+    public void setProInDate(String proInDate) {
+        this.proInDate = proInDate;
+    }
 }
