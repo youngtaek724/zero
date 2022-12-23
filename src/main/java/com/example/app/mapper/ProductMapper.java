@@ -1,9 +1,6 @@
 package com.example.app.mapper;
 
-import com.example.app.domain.vo.Criteria;
-import com.example.app.domain.vo.MenuVO;
-import com.example.app.domain.vo.ProductVO;
-import com.example.app.domain.vo.SerialVO;
+import com.example.app.domain.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -29,4 +26,5 @@ public interface ProductMapper {
     public int getTotalSerial();
 // product 상세 정보
     public ProductVO selectProduct(int proId);
+
 }

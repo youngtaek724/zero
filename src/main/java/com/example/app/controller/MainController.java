@@ -19,10 +19,21 @@ public class MainController {
         model.addAttribute("products", productService.showAll());
         model.addAttribute("menus", productService.showMenu());
     }
-
+    @GetMapping("/cart")
+    public void myCart(Model model){
+        model.addAttribute("menus", productService.showMenu());
+    }
     @GetMapping("/helpDesk")
     public void help(Model model){
         model.addAttribute("menus", productService.showMenu());
+    }
+
+    @GetMapping("/addressList")
+    public void addressList(){};
+
+    @GetMapping("/result")
+    public void addResult(){
+
     }
 
 }

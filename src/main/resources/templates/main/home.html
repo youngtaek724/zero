@@ -133,7 +133,7 @@
             <ul class="main_display">
               <th:block th:each="product:${products}">
               <li class="main_content_list" th:object="${product}">
-                <a href="#">
+                <a class ="detail" th:href="*{proId}">
                   <div class="main_content__Thumbnail">
                     <img src="/images/noImg.png"/>
                   </div>
@@ -183,7 +183,7 @@
                     <th:block th:each="product:${products}">
                     <div class="slick-slide slick-active slick-current" style="outline: none; width: 270px" th:object="${product}">
                         <li class="articleCard_a articleBanner__card" >
-                          <a href="#" class="ArticleCard__link">
+                          <a class="ArticleCard__link" th:href="*{proId}">
                             <div class="Thumbnail_card undefined">
                               <img src="/images/noImg.png" alt="" class="Thumbnail_img undefined"/>
                             </div>
@@ -454,9 +454,19 @@
       var $banner = $(".banner").find("ul");
       var $bannerWidth = $banner.children().outerWidth(); 
       var $bannerHeight = $banner.children().outerHeight(); 
-      var $bannerLength = $banner.children().length; 
+      var $bannerLength = $banner.children().length;
+      const detail = $("a.detail");
+
       var rollingId;
       let menuCode = [[${menuCode}]];
+
+      detail.on("click", function(e){
+        e.preventDefault();
+        location.href = "/product/detail" + "?proId=" + $(this).attr("href");
+      });
+      $(".signUpButton").on("click", function () {
+        location.href = "/member/login";
+      })
       rollingId = setInterval(function () {
         rollingStart();
       }, 10000);
@@ -483,6 +493,10 @@
              code='001'
              page = "/main/helpDesk"
              break;
+           case '005' :
+            code = '005'
+            page = "/main/cart"
+            break;
         }
         location.href = page;
       });
@@ -497,6 +511,9 @@
       $(document.pageForm.page).val($(this).attr("href"));
       document.pageForm.submit();
     });
+
+
+
 
 
   </script>

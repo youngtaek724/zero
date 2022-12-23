@@ -3,10 +3,10 @@
 <mapper namespace="com.example.app.mapper.ProductMapper">
 
     <select id="showAll" resultType="productVO">
-        SELECT ROWNUM, PRO_NAME, PRO_OUTPUT , PRO_SUBTITLE
+        SELECT ROWNUM, PRO_NAME, PRO_OUTPUT , PRO_SUBTITLE, PRO_ID
         FROM
         (
-            SELECT PRO_NAME, PRO_OUTPUT, PRO_SUBTITLE
+            SELECT PRO_NAME, PRO_OUTPUT, PRO_SUBTITLE, PRO_ID
             FROM TBL_PRODUCT
             WHERE PRO_SHOWYN ='Y'
             ORDER BY PRO_ID DESC
@@ -63,6 +63,8 @@
         FROM TBL_PRODUCT
         WHERE PRO_ID = #{proId}
     </select>
+
+
 </mapper>
 
 

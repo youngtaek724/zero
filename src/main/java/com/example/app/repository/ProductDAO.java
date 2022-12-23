@@ -1,5 +1,6 @@
 package com.example.app.repository;
 
+import com.example.app.domain.vo.CartVO;
 import com.example.app.domain.vo.Criteria;
 import com.example.app.domain.vo.ProductVO;
 import com.example.app.domain.vo.SerialVO;

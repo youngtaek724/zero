@@ -2,11 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.app.mapper.BoardMapper">
 
-<select id="select" resultType="boardVO">
-    SELECT BOARD_NUMBER, BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER, BOARD_REGISTER_DATE
-    FROM TBL_BOARD
-    WHERE BOARD_NUMBER = #{board_number}
-</select>
+    <select id="select" resultType="boardVO">
+        SELECT BOARD_NUMBER, BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER, BOARD_REGISTER_DATE
+        FROM TBL_BOARD
+        WHERE BOARD_NUMBER = #{board_number}
+    </select>
+
+    <!-- 문의글 작성-->
+    <insert id="insertInquiry">
+    INSERT INTO TBL_INQUIRY
+    (INQ_NUMBER, INQ_PRODUCTID, INQ_WRITER, INQ_SECREATYN, INQ_DATE, INQ_ANSWERYN, INQ_TITLE, INQ_CONTENT, INQ_ALERTYN)
+    VALUES(seq_inquirynum.nextval, #{inqProductId}, #{inqWriter}, #{inqSecreatYN}, SYSDATE, 'N', #{inqTitle}, #{inqContent}, 'N')
+    </insert>
+
+    <!-- 문의글 전체 조회-->
+    <select id="selectAllInquiry" resultType="inquiryVO">
+        SELECT INQ_NUMBER, INQ_CONTENT,INQ_PRODUCTID , tm.USER_NAME WRITER,INQ_WRITER , INQ_SECREATYN , to_char(inq_date, 'YYYY-MM-DD') INQ_DATE , INQ_ANSWERYN , INQ_TITLE
+        FROM TBL_MEMBER tm ,TBL_INQUIRY ti
+        WHERE INQ_PRODUCTID =#{inqProductId} AND tm.USER_NUMBER =ti.INQ_WRITER
+        ORDER BY ti.INQ_DATE DESC
+    </select>
 </mapper>
 
 

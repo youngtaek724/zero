@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.app.mapper.CartMapper">
 
-    <insert id="insert">
+    <!-- 상품 장바구니 담기-->
+    <insert id="insertCart">
         INSERT INTO TBL_CART
-        (USER_NUMBER, PRO_ID, PRO_COUNT)
-        VALUES (#{userNumber}, #{proId}, #{proCount})
+        (USER_NUMBER, PRO_ID, PRO_COUNT, PRO_PRICE)
+        VALUES (#{userNumber}, #{proId}, #{proCount}, #{proPrice})
     </insert>
     
 </mapper>

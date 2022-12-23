@@ -10,6 +10,9 @@
         <typeAlias type="com.example.app.domain.vo.BoardVO" alias="boardVO"/>
         <typeAlias type="com.example.app.domain.vo.ReplyDTO" alias="replyDTO"/>
         <typeAlias type="com.example.app.domain.vo.CartVO" alias="cartVO"/>
+        <typeAlias type="com.example.app.domain.vo.InquiryVO" alias="inquiryVO"/>
+        <typeAlias type="com.example.app.domain.vo.AddressVO" alias="addressVO"/>
+        <typeAlias type="com.example.app.domain.vo.MemberVO" alias="memberVO"/>
         <!--
         <typeAlias type="com.example.app.domain.vo.BoardVO" alias="boardVO"/>
         <typeAlias type="com.example.app.domain.vo.BoardDTO" alias="boardDTO"/>

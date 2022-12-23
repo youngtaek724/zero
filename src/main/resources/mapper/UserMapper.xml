@@ -23,6 +23,8 @@
     <select id="getTotal" resultType="_int">
         SELECT COUNT(USER_NUMBER) FROM TBL_MEMBER WHERE USER_TYPE = 1
     </select>
+
+    <!-- 로그인-->
 </mapper>
 
 

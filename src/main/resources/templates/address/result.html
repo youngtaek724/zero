@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="kor" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/cart.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.3/dist/web/static/pretendard-dynamic-subset.css"/>
+    <link rel="stylesheet" href="/css/main_home.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/slick.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/product.css" >
+    <link rel="stylesheet" href="/css/cart.css" >
+</head>
+<body>
+    <div id="__next" data-reactroot="">
+        <div class="css-sv3mbe e1u1sq1y0">
+            <div class="css-ixlb9s ecqulhg2">
+                <div class="css-0 e11n32x24">
+                    <strong class="css-1gkzf4x e11n32x23">
+                        <span type="direct" class="css-1kxzrwz e11n32x22">샛별배송</span> 지역입니다.
+                        <p class="css-1d1s4ku e11n32x21">매일 새벽, 문 앞까지 신선함을 전해드려요.</p>
+                    </strong>
+                </div>
+                <div class="css-19u3hc5 e1n7pxx51">
+                    <p class="css-ks8pmw e1n7pxx50">주소를 검색하세요</p>
+                    <button class="css-1w63xsn e4nu7ef3" type="button" width="120" height="44" radius="3">
+                        <span class="css-ymwvow e4nu7ef1">
+                            <img src="https://res.kurly.com/pc/service/common/2006/ico_search.svg" alt="" class="css-1m3kac1 e4nu7ef0">재검색
+                        </span>
+                    </button>
+                </div>
+                <div class="css-1hxvx8x e1uzxhvi6">
+
+                    <div height="44" class="css-t7kbxx e1uzxhvi3">
+                        <input id = "memberAddress3" data-testid="input-box" placeholder="나머지 주소를 입력해 주세요" type="text" height="44" class="css-n2am0u e1uzxhvi2" >
+                    </div>
+                </div>
+                <div class="css-a0w530 ecqulhg1">
+                    <label class="css-vo1p4o e1dcessg3">
+                        <input type="checkbox" class="css-agvwxo e1dcessg2">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">
+                        <span class="css-0 e1dcessg1">기본 배송지로 저장</span>
+                    </label>
+                </div>
+                <button class="css-10voksq e4nu7ef3" type="button" height="44" radius="3">
+                    <span class="css-ymwvow e4nu7ef1">저장</span>
+                </button>
+                <div class="css-nyfv7e ep04gzj5">
+                    <strong class="css-1ca1xau ep04gzj4">샛별배송 지역 중 배송불가 장소 안내</strong>
+                    <p class="css-1lc8yec ep04gzj3">
+                        <span>관공서 / 학교 / 병원 / 시장 / 공단지역 / 산간지역 / 백화점 등</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/cart.js"></script>
+    <script th:inline="javascript">
+
+        const find = $(".css-1w63xsn");
+        const save = $(".css-10voksq");
+        const check = $(".css-agvwxo");
+        let memberAddress1;
+        let memberAddress2;
+        let baseAddress = 'N';
+
+
+
+        $("#baseAddress").val("N");
+        let flag = false;
+        let base ;
+        find.on("click", function () {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    $(".css-ks8pmw").text(data.address);
+                    memberAddress1 = data.zonecode;
+                    memberAddress2 = data.address;
+                    flag = true;
+                }
+            }).open();
+        });
+
+        save.on("click", function (e) {
+            let check = $(".e1uzxhvi2").val().trim();
+            if(flag==false||check==""){
+                alert("주소를 입력해주세요");
+                return;
+            }
+            send(e);
+        })
+
+        function send (e){
+            e.preventDefault();
+            addAddress({
+                memberAddress1 : memberAddress1,
+                memberAddress2 : memberAddress2,
+                memberAddress3 : $("#memberAddress3").val(),
+                baseAddress : baseAddress
+            });
+        }
+
+        function addAddress(address, callback, error) {
+            $.ajax({
+                url: "/cart/address",
+                type: "post",
+                data: JSON.stringify(address),
+                contentType: "application/json; charset=utf-8", //data에 JSON 작성 시 반드시 contentType 작성
+                success: function (result) {
+                    alert("새로운 배송지가 저장되었습니다");
+                    window.close();
+                },
+                error: function (a, b, c) {
+                    if (error) {
+                        error(a, b, c);
+                    }
+                }
+            });
+        }
+        check.on("click", function () {
+            baseAddress = (check.is(':checked'))?'Y':'N';
+            changeImg();
+        })
+
+        function changeImg() {
+            let img = $(".e1dcessg2");
+            if(img.is(':checked')){
+                $(".css-1wfsi82").attr('src', 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K');
+            }else{
+                $(".css-1wfsi82").attr('src','data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K' );
+            }
+        }
+    </script>
+</body>
+</html>

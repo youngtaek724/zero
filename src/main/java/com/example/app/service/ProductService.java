@@ -1,7 +1,7 @@
 package com.example.app.service;
 
-import com.example.app.domain.vo.MenuVO;
-import com.example.app.domain.vo.ProductVO;
+import com.example.app.domain.vo.*;
+import com.example.app.repository.BoardDAO;
 import com.example.app.repository.MenuDAO;
 import com.example.app.repository.ProductDAO;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +17,8 @@ import java.util.List;
 public class ProductService {
     private final ProductDAO productDAO;
     private final MenuDAO menuDAO;
+    private final BoardDAO boardDAO;
+
     public List<ProductVO> showAll(){ return productDAO.showAll(); }
 
     // 메뉴
@@ -36,5 +38,6 @@ public class ProductService {
         productVO.setProInDate(year+"년 "+month+"월");
         return productVO;
     }
+
 
 }

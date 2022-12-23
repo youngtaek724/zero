@@ -2,18 +2,16 @@ package com.example.app.domain.vo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
 @NoArgsConstructor
-public class CartVO {
-
+public class AddressVO {
 
     private int userNumber;
-    private int proId;
-    private int proCount;
-    private int proPrice;
+    private String memberAddress1;
+    private String memberAddress2;
+    private String memberAddress3;
+    private String baseAddress;
 }

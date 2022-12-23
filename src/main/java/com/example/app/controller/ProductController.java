@@ -1,5 +1,6 @@
 package com.example.app.controller;
 
+import com.example.app.service.BoardService;
 import com.example.app.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,11 +15,12 @@ import java.text.ParseException;
 @RequestMapping("/product/*")
 public class ProductController {
     private final ProductService productService;
-
+    private final BoardService boardService;
     @GetMapping("/detail")
     public void productDetail(Model model, int proId) throws ParseException {
         model.addAttribute("menus", productService.showMenu());
         model.addAttribute("product", productService.showProductDetail(proId));
+        model.addAttribute("inquirys", boardService.showAllInquiry(proId));
     }
 }
 

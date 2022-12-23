@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/slick.css" type="text/css"/>
     <link  rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/product.css" >
+    <link rel="stylesheet" href="/css/cart.css" >
 </head>
 
 <body>
@@ -68,7 +69,119 @@
     </div>
     <!--header 끝 (나중에 제거)-->
     <br><br><br>
-    <div class="css-n48rgu ex9g73v0">
+    <!-- 문의하기 모달창-->
+    <div role="presentation" class="MuiDialog-root css-b5lr18" style="position: fixed; z-index: 1300; inset: 0px; display: none" id = "modal">
+        <div class="MuiBackdrop-root" aria-hidden="true" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"></div>
+        <div tabindex="0" data-test="sentinelStart"></div>
+        <div class="MuiDialog-container MuiDialog-scrollPaper" role="none presentation" tabindex="-1" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;">
+            <div class="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiDialog-paperFullWidth MuiPaper-elevation24 MuiPaper-rounded" role="dialog">
+                <div class="MuiDialogContent-root css-ew9uri">
+                    <div class="css-190e3ze eg43r0m0">
+                        <div class="css-1c7i6of et95tiw2">
+                            <div class="css-1d3g9q7 et95tiw1">상품 문의하기</div>
+                            <span class="css-e50sj0 et95tiw0"></span>
+                        </div>
+                        <div id="modal_layout"></div>
+
+                        <div class="css-1tm481w eell72m3">
+                            <div class="css-l4dbne eell72m2">
+                                <img src="https://img-cf.kurly.com/shop/data/goods/1646026301647l0.jpg" class="css-1vpfo16 eell72m1">
+                            </div>
+                            <div class="css-1mysn55 eell72m0">
+                                <span>[하인즈] 베지바이츠 브로콜리 프라이즈 400g</span>
+                            </div>
+                        </div>
+                        <div class="css-4qu8li e43j10r2">
+                            <div class="css-171jy4 e43j10r1">
+                                <span>제목</span>
+                            </div>
+                            <div class="css-ehb3da e43j10r0">
+                                <div class="css-1u16q1v e1uzxhvi6">
+                                    <div height="42" class="css-1xbd2py e1uzxhvi3">
+                                        <input data-testid="input-box" name="subject" placeholder="제목을 입력해 주세요" type="text" height="42" class="css-1v1k4k e1uzxhvi2" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="css-4qu8li e43j10r2">
+                            <div class="css-171jy4 e43j10r1">
+                                <span>내용</span>
+                            </div>
+                            <div class="css-ehb3da e43j10r0">
+                                <div class="css-17xxk8 e6w4oc80">
+                                    <div class="css-0 e1tjt2bn7">
+                                        <div class="css-l45xk5 e1tjt2bn5">
+                                            <textarea inputmode="text" aria-label="textarea-message" name="content" class="css-5etceh e1tjt2bn1"></textarea>
+                                            <div class="placeholder css-1ofzfyp e1tjt2bn6">
+                                                <div class="css-ylej1f e41kell0">
+                                                    <strong>상품문의 작성 전 확인해 주세요</strong>
+                                                    <ul>
+                                                        <li>답변은 영업일 기준 2~3일 소요됩니다.</li>
+                                                        <li>해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
+                                                        <li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1 문의에 남겨주세요.</li>
+                                                    </ul>
+                                                    <strong>제품</strong>
+                                                    <ul>
+                                                        <li>입고일 : 품절 상품 입고 일이 확정된 경우, 섬네일에 기재되어 있습니다. (종 모양을 클릭하여, 재입고 알림 설정 가능)</li>
+                                                        <li>제품 상세정보 : 영양성분 및 함량, 용량, 보관 및 취급 방법 등 제품 정보는 상세이미지 또는 상세정보에서 확인 가능합니다.</li>
+                                                    </ul>
+                                                    <strong>주문취소</strong>
+                                                    <ul>
+                                                        <li>배송 단계별로 주문취소 방법이 상이합니다.</li>
+                                                        <li>[입금확인] 단계 : [마이컬리 &gt; 주문내역 상세페이지] 에서 직접 취소 가능</li>
+                                                        <li>[입금확인] 이후 단계 : 고객센터로 문의</li>
+                                                        <li>생산이 시작된 [상품 준비중] 이후에는 취소가 제한되는 점 고객님의 양해 부탁드립니다.</li>
+                                                        <li>비회원은 모바일 App 또는 모바일 웹사이트에서 [마이컬리 &gt; 비회원 주문 조회 페이지]에서 취소가 가능합니다.</li>
+                                                        <li>일부 예약상품은 배송 3~4일 전에만 취소 가능합니다.</li>
+                                                    </ul>
+                                                    <p>※ 주문상품의 부분 취소는 불가능합니다. 전체 주문 취소 후 재구매 해주세요.</p>
+                                                    <strong>배송</strong>
+                                                    <ul>
+                                                        <li>주문 완료 후 배송 방법(샛별/택배)은 변경이 불가능합니다.</li>
+                                                        <li>배송일 배송시간 지정은 불가능합니다. (예약배송 포함)</li>
+                                                    </ul>
+                                                    <p>※ 전화번호, 이메일, 주소, 계좌번호 등의 상세 개인정보가 문의 내용에 저장되지 않도록 주의해 주시기 바랍니다.</p>
+                                                </div>
+                                            </div>
+                                            <span class="content-length-counter css-dbwxb9 e1tjt2bn0">
+                                                <span>
+                                                    <span class="css-14kcwq8 e1tjt2bn2">0 </span>
+                                                    <span class="css-14kcwq8 e1tjt2bn3">/ 5,000</span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="css-4qu8li e43j10r2">
+                            <div class="css-171jy4 e43j10r1">
+                                <span></span>
+                            </div>
+                            <div class="css-ehb3da e43j10r0">
+                                <label class="css-1ikskzr e1dcessg3">
+                                    <input name="isSecret" type="checkbox" class="css-agvwxo e1dcessg2">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">
+                                    <span class="css-0 e1dcessg1">비밀글로 문의하기</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="css-f9c7pn e6wys6s0">
+                            <button class="css-wg85j7 e4nu7ef3" type="button">
+                                <span class="css-ymwvow e4nu7ef1">취소</span>
+                            </button>
+                            <button class="css-f4f4h7 e4nu7ef3" type="button" disabled="disabled">
+                                <span class="css-ymwvow e4nu7ef3 assa">등록</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--본문-->
+    <div class="css-n48rgu ex9g73v0" id ="over">
         <div class="css-16c0d8l e1brqtzw0">
             <main id= "product-atf" class="css-1eoy87d e17iylht2" th:object="${product}">
                 <div class="css-1bg6a0j e17iylht1"></div>
@@ -81,19 +194,14 @@
                         <h2 class="css-47pv1l ezpe9l10" th:text="*{proSubTitle}"></h2>
                     </div>
                     <h2 class="css-liviaq e1q8tigr5">
-                            <span class="css-5nirzt e1q8tigr4">
-                                10%
-                            </span>
-                        <span class="css-9pf1ze e1q8tigr3" th:text="*{proInput}"></span>
+                        <span th:if="${product.proDiscountYN=='Y'}" class="css-5nirzt e1q8tigr4" th:text="*{proDiscountPer}+'%'"/>
+                        <span class="css-9pf1ze e1q8tigr3" th:text="*{proOutput}"></span>
                         <span class="css-1x9cx9j e1q8tigr2">원</span>
                     </h2>
-                    <span class="css-1tv2o0g e1q8tigr1">
-                            20000원
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMSAyMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBzdHJva2U9IiNDQ0MiIHN0cm9rZS13aWR0aD0iMS4yIiBjeD0iMTAuNSIgY3k9IjEwLjUiIHI9IjYuOSIvPgogICAgICAgIDxwYXRoIGQ9Ik03LjggOC43MzJoMS4zOTdjLjA0OC0uNzI2LjU0MS0xLjE5IDEuMzA4LTEuMTkuNzUgMCAxLjI1LjQ0NyAxLjI1IDEuMDY1IDAgLjU0LS4yMS44NS0uODE0IDEuMjRsLS4xNzQuMTFjLS44Mi40ODEtMS4xNjUgMS4wMTctMS4xMTIgMS45MDhsLjAwNi40MDVoMS4zOHYtLjM0YzAtLjU4OC4yMi0uODkxLjk5OC0xLjM0OS44MS0uNDgyIDEuMjYxLTEuMTE4IDEuMjYxLTIuMDI3IDAtMS4zMTUtMS4wODgtMi4yNTQtMi43MTctMi4yNTQtMS43NjYgMC0yLjczNSAxLjAyMy0yLjc4MyAyLjQzMnptMi42MTYgNi4zNzRjLS41OTQgMC0uOTg3LS4zNzUtLjk4Ny0uOTQ1IDAtLjU3Ny4zOTMtLjk1Mi45ODctLjk1Mi42MDcgMCAuOTg3LjM3NS45ODcuOTUyIDAgLjU3LS4zOC45NDUtLjk4Ny45NDV6IiBmaWxsPSIjQ0NDIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="컬리판매가 자세히 보기" class="css-mlt92s e1q8tigr0">
-                        </span>
-                    <div class="css-toq1xn e1hhkg2t0">
-                        로그인 후 할인 및 적립 혜택이 제공됩니다
-                    </div>
+                    <span th:if="${product.proDiscountYN=='Y'}" class="css-1tv2o0g e1q8tigr1" th:text="*{proOutput}+'원'">할인전가격</span>
+                    <img th:if="${product.proDiscountYN=='Y'}" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMSAyMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBzdHJva2U9IiNDQ0MiIHN0cm9rZS13aWR0aD0iMS4yIiBjeD0iMTAuNSIgY3k9IjEwLjUiIHI9IjYuOSIvPgogICAgICAgIDxwYXRoIGQ9Ik03LjggOC43MzJoMS4zOTdjLjA0OC0uNzI2LjU0MS0xLjE5IDEuMzA4LTEuMTkuNzUgMCAxLjI1LjQ0NyAxLjI1IDEuMDY1IDAgLjU0LS4yMS44NS0uODE0IDEuMjRsLS4xNzQuMTFjLS44Mi40ODEtMS4xNjUgMS4wMTctMS4xMTIgMS45MDhsLjAwNi40MDVoMS4zOHYtLjM0YzAtLjU4OC4yMi0uODkxLjk5OC0xLjM0OS44MS0uNDgyIDEuMjYxLTEuMTE4IDEuMjYxLTIuMDI3IDAtMS4zMTUtMS4wODgtMi4yNTQtMi43MTctMi4yNTQtMS43NjYgMC0yLjczNSAxLjAyMy0yLjc4MyAyLjQzMnptMi42MTYgNi4zNzRjLS41OTQgMC0uOTg3LS4zNzUtLjk4Ny0uOTQ1IDAtLjU3Ny4zOTMtLjk1Mi45ODctLjk1Mi42MDcgMCAuOTg3LjM3NS45ODcuOTUyIDAgLjU3LS4zOC45NDUtLjk4Ny45NDV6IiBmaWxsPSIjQ0NDIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="컬리판매가 자세히 보기" class="css-mlt92s e1q8tigr0">
+
+                    <div th:if="${product.proDiscountYN=='Y'}" class="css-toq1xn e1hhkg2t0">로그인 후 할인 및 적립 혜택이 제공됩니다</div>
                     <div class="css-iqoq9n ejdfx860">
                         <dl class="css-e6zlnr e1wur6vo1">
                             <dt class="title css-1ikhfdy e1wur6vo0">배송</dt>
@@ -124,8 +232,8 @@
                                             <button type="button" aria-label="수량올리기" class="css-18y6jr4 e1hx75jb0"></button>
                                         </div>
                                         <div>
-                                            <span class="css-fburr9 e1bjklo11">20000원</span>
-                                            <span class="css-1foiu5e e1bjklo10" th:text="*{proInput}+'원'">17000원</span>
+                                            <span th:if="${product.proDiscountYN=='Y'}" class="css-fburr9 e1bjklo11"  th:text="*{proOutput}+'원'">20000원</span>
+                                            <span class="css-1foiu5e e1bjklo10"  th:text="*{proOutput}+'원'">17000원</span>
                                         </div>
                                     </div>
                                 </div>
@@ -135,7 +243,7 @@
                             <div class="css-ixlb9s extc5fi9">
                                 <div class="css-yhijln extc5fi8">
                                     <span class="css-w1is7v extc5fi7">총 상품금액 : </span>
-                                    <span class="css-x4cdgl extc5fi6" th:text="*{proInput}">18,000</span>
+                                    <span class="css-x4cdgl extc5fi6"  th:text="*{proOutput}">18,000</span>
                                     <span class="css-1jb8hmu extc5fi5">원</span>
                                 </div>
                                 <div class="css-1iis94s extc5fi4">
@@ -167,22 +275,22 @@
             <nav class="css-1le17tz en4zazl1">
                 <ul class="css-tse2s2 en4zazl0">
                     <li class="css-1tzhzcg efe6b6j1">
-                        <a class="css-1t0ft7s efe6b6j0">
+                        <a class="css-1t0ft7s efe6b6j0" href="#description">
                             <span class="name">상품설명</span>
                         </a>
                     </li>
                     <li class="css-1tzhzcg efe6b6j1">
-                        <a class="css-1t0ft7s efe6b6j0">
+                        <a class="css-1t0ft7s efe6b6j0" href="#proDetail">
                             <span class="name">상세정보</span>
                         </a>
                     </li>
                     <li class="css-1tzhzcg efe6b6j1">
-                        <a class="css-1t0ft7s efe6b6j0">
+                        <a class="css-1t0ft7s efe6b6j0" href="#review">
                             <span class="name">후기(117)</span>
                         </a>
                     </li>
                     <li class="css-1tzhzcg efe6b6j1">
-                        <a class="css-1t0ft7s efe6b6j0">
+                        <a class="css-1t0ft7s efe6b6j0" href="#inquiry">
                             <span class="name">문의</span>
                         </a>
                     </li>
@@ -219,7 +327,7 @@
                     <div class="css-kqvkc7 es6jciw1">
                         <img src="/images/noimg.png" alt="자세히보기 이미지" class="css-1d3w5wq es6jciw0">
                     </div>
-                    <div class="css-186pvss e11kghol1">
+                    <div class="css-186pvss e11kghol1"  id = "proDetail">
                         <h3 class="css-nd38pl e11kghol0">상품고시정보</h3>
                         <ul class="css-1lb3ltj ej1h6cm3">
                             <li class="css-pxuqs9 ej1h6cm1">품명 및 모델명</li>
@@ -345,7 +453,7 @@
                 <div id="inquiry" class="css-18eozqj el27cq0">
                     <div class="css-30tvht eewa3w91">
                         <div class="css-17juoyc eewa3w90">
-                            <button class="css-mhrz8m e4nu7ef3" type="button" width="120" height="40">
+                            <button class="css-mhrz8m e4nu7ef3" type="button" width="120" height="40" id = "inquiry_btn">
                                 <span class="css-ymwvow e4nu7ef1">문의하기</span>
                             </button>
                         </div>
@@ -373,19 +481,48 @@
                                     <td class="css-1pkqelu e1l5ky7y6">2017.02.01</td>
                                     <td class="css-1pkqelu e1l5ky7y5">-</td>
                                 </tr>
-                                <tr class="css-1f4ydfp e1l5ky7y9">
-                                    <td class="css-sno6ed e1l5ky7y8"><div class="css-s5xdrg e1l5ky7y1"><span>비밀글입니다.</span><span class="css-lrsm5m e1l5ky7y0"></span></div></td>
-                                    <td class="css-1pkqelu e1l5ky7y7">박*란</td>
-                                    <td class="css-1pkqelu e1l5ky7y6">2022.11.16</td>
-                                    <td class="css-bhr3cq e1l5ky7y5">답변완료</td>
-                                </tr>
-                                <tr class="css-1f4ydfp e1l5ky7y9"><td class="css-sno6ed e1l5ky7y8"><div class="css-s5xdrg e1l5ky7y1"><span>비밀글입니다.</span><span class="css-lrsm5m e1l5ky7y0"></span></div></td>
-                                    <td class="css-1pkqelu e1l5ky7y7">최*영</td>
-                                    <td class="css-1pkqelu e1l5ky7y6">2022.09.14</td>
-                                    <td class="css-bhr3cq e1l5ky7y5">답변완료</td>
-                                </tr>
+                                </tbody>
+                                <tbody class="inquiryList">
+
+                                    <tr class="css-1mvq381 e61d7mt0">
+                                        <td colspan="4">
+                                            <div class="css-tnubsz e1ptpt003">
+                                                <div class="css-1n83etr e1ptpt002">
+                                                    <div class="css-m1wgq7 e1ptpt001">
+                                                        <span class="css-z93ubq e1kayg9i0"></span>
+                                                    </div>
+                                                    <div class="css-zv5298 e1ptpt000">
+                                                        <span>상한걸 보냈어요?<br></span>
+                                                        <span>반품합니다~<br></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="css-tnubsz e1ptpt003">
+                                                <div class="css-1n83etr e1ptpt002">
+                                                    <div class="css-m1wgq7 e1ptpt001">
+                                                        <span class="css-1non6l6 ey0f1wv0"></span>
+                                                    </div>
+                                                    <div class="css-zv5298 e1ptpt000">
+                                                        <div>안녕하세요. 컬리입니다.<br><br>먼저, 즐거워야할 쇼핑에 불편함을 드린 점 깊이 사과드립니다.<br><br>번거로우시겠지만, 남겨주신 내용은 1:1문의 게시판이나 카카오톡 채널로 접수를 부탁드립니다 답변을 드릴 수 있도록 하겠습니다.감사합니다.<br><br>컬리 드림.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="css-17g9jzg e1gk8zam0">2022.12.18</div>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="css-18ad0gx e9e6ap50">
+                            <div class="css-sxxs1g eytury60">
+                                <button disabled="" type="button" class="css-rzcdhr e1hbwyso0">
+                                    <div class="css-7qb0sc e1ilyb3p0">이전</div>
+                                </button>
+                                <button type="button" class="css-1jwilit e1pk9060">
+                                    <div class="css-7qb0sc e1ilyb3p0">다음</div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -394,22 +531,160 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="/js/reply.js"></script>
+    <script src="/js/cart.js"></script>
     <script th:inline="javascript">
-        let price = [[${product.proInput}]];
+        let price = [[${product.proOutput}]];
         let proId =  [[${product.proId}]];
+        let discountYN = [[${product.proDiscountYN}]];
         let count = parseInt($(".count").attr("value"));
         let plus = $(".css-18y6jr4");
         var minus = $(".css-1e90glc");
         let cnt = $(".count");
         let countA = $(".countA");
         let cart = $(".cart-button");
+        let closeBtn = $(".css-wg85j7");
+        let closeBtn2 = $(".css-e50sj0");
+        let flag = false;
+        let detailInq = 0;
+
+
+
+
+        getList();
+
+        function getList(){
+            cartService.getInquiry(proId, showList);
+        }
+
+        function showList(inquiryDTO){
+            let text = "";
+            inquiryDTO.forEach(inquiry=>{
+                let secreat = inquiry.inqSecreatYN;
+                let answer = inquiry.inqAnswerYN;
+                text += "<tr class='css-1f4ydfp1 e1l5ky7y9' href = '"+inquiry.inqNumber+"'>";
+
+                text += (secreat=="N"?inquiryTitle(inquiry.inqTitle):inquirySecreat());
+                text += "<td class = 'css-1pkqelu e1l5ky7y7'>"
+                text += inquiry.writer;
+                text += "</td>";
+                text += "<td class = 'css-1pkqelu e1l5ky7y6'>";
+                text += inquiry.inqDate;
+                text += "</td>";
+                text += (answer=="N"?"<td class='css-1pkqelu e1l5ky7y5'>답변대기":"<td class='css-bhr3cq e1l5ky7y5'>답변완료");
+                text += "</td>";
+                text += "</tr>";
+
+                text += "<tr class='css-1mvq381 e61d7mt0' style='display: none' id = inq"+inquiry.inqNumber+">";
+                text += "<td colspan='4'>";
+                text += "<div class='css-tnubsz e1ptpt003'>";
+                text += "<div class='css-1n83etr e1ptpt002'>";
+                text += "<div class='css-m1wgq7 e1ptpt001'>";
+                text += "<span class='css-z93ubq e1kayg9i0'></span>";
+                text += "</div>";
+                text += "<div class='css-zv5298 e1ptpt000' style='white-space: pre-wrap'>";
+                text += "<span>";
+                text += inquiry.inqContent;
+                text += "</span>";
+                text += "</div></div></div>"
+            })
+            $(".inquiryList").html(text);
+        }
+        function reset(){
+            $(".css-1mvq381").css("display","none");
+        }
+        function checkSecreat(){
+            $(document).on("click",".css-sno6ed",function(e){return false;});
+            return true;
+        }
+        $(document).on("click",".css-1f4ydfp1",function(e){
+
+            if(checkSecreat()){
+                let num = $(this).attr("href");
+                let id = "#inq"+num;
+                let cnt = 0;
+                reset();
+                if(num!=detailInq){
+                    $(id).css("display", "inline");
+                    detailInq = num;
+                }else{
+                    reset();
+                    detailInq=0;
+                }
+            }
+        });
+        $(document).on("click",".css-s5xdrg",function(e){
+            alert("비밀글입니다");
+        });
+
+        function inquiryTitle(title) {
+            let text = "";
+            text += "<td class='css-1brd6ns e1l5ky7y8'>";
+            text += title;
+            text += "</td>"
+            return text;
+        }
+        function inquirySecreat() {
+            let text = "";
+            text += "<td class='css-sno6ed e1l5ky7y8'>";
+            text += "<div class = 'css-s5xdrg e1l5ky7y1'>";
+            text += "<span>비밀글입니다</span>";
+            text += "<span class='css-lrsm5m e1l5ky7y0'></span>";
+            text += "</div>"
+            text += "</td>"
+            return text;
+        }
+
+
+        function close () {
+            document.getElementById("modal").style.display="none";
+            $(".e1uzxhvi2").val("");
+            $(".e1tjt2bn1").val("");
+        }
+
+        closeBtn.on("click", function () {
+            close();
+        });
+        closeBtn2.on("click", function () {
+            close();
+        });
+
+
+        document.getElementById("inquiry_btn").onclick = function() {
+            document.getElementById("modal").style.display="block";
+            document.getElementById("over").style.overflow="hidden";
+        }
+        $(".e1tjt2bn6").on("click",function () {
+            deleteText();
+        });
+
+        function deleteText(){
+            $(".e1tjt2bn6").css("display", "none");
+            $(".css-5etceh").focus();
+        }
+
+
+        if(discountYN=="Y"){
+            discountPrice();
+        }
+        function discountPrice(){
+            const discountper = [[${product.proDiscountPer}]];
+            price = (price/100)*(100-discountper);
+            $(".e1q8tigr3").text(price);
+            $(".e1bjklo10").text(price+"원");
+            $(".extc5fi6").text(count*price);
+        }
 
         countA.attr("disabled", "disabled");
         plus.on("click", function () {
             count += 1;
             cnt.text(count);
         })
+
+        $(function () {
+            $('li > a').click(function (){
+                $('html, body').animate({scrollTop: $(this.hash).offset.top}, 300);
+            });
+        });
 
         minus.on("click", function () {
             count -= 1;
@@ -429,11 +704,98 @@
 
             $(".extc5fi6").text(count*price);
             $(".e1bjklo10").text(count*price+"원");
+        })
 
+        $(".e1tjt2bn1").on("change", function () {
+            deleteText();
+            $(".css-f4f4h7").css("background-color", "rgb(95, 0, 128)");
+            $(".assa").css("color","rgb(255, 255, 255)" );
+            $(".css-f4f4h7").attr("disabled", false);
         })
-        cart.on("click", function () {
-            alert(proId+"***"+count);
+
+
+        cart.on("click", function (e) {
+            e.preventDefault();
+
+            cartService.add({
+                userNumber: 2,
+                proId: proId,
+                proCount: count,
+                proPrice : price
+            }, function(){
+                alert("장바구니에 추가되었습니다");
+            });
+        });
+
+        const $read = $("a.read");
+        $read.on("click", function(e){
+            e.preventDefault();
+            let code = $(this).attr("href");
+            let page = "";
+            switch (code) {
+                case '000' :
+                    page = "/main/home"
+                    break;
+                case '001' :
+                    code='001'
+                    page = "/main/helpDesk"
+                    break;
+            }
+            location.href = page;
+        });
+
+        $(".css-1ikskzr").on("click", function () {
+            changeImg();
         })
+
+
+        function changeImg() {
+            flag = $(".e1dcessg2");
+            if(flag.is(':checked')){
+                $(".css-1wfsi82").attr('src', 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K');
+            }else{
+                $(".css-1wfsi82").attr('src','data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K' );
+            }
+        }
+
+        $(".css-f4f4h7").on("click", function (e) {
+            if(checkInquiry()){return;}
+            let inquiryTitle = $(".css-1v1k4k").val();
+            let inquiryContent = $(".css-5etceh").val();
+            let result = $(".e1dcessg2").is(':checked')?"Y":"N";
+
+            e.preventDefault();
+            cartService.addInquiry({
+                inqWriter: 2,
+                inqProductId: proId,
+                inqSecreatYN: result,
+                inqTitle : inquiryTitle,
+                inqContent:inquiryContent
+            }, function(){
+                alert("문의글이 등록되었습니다");
+                close();
+                getList();
+            });
+        })
+
+        function checkInquiry() {
+            let inquiryTitle = $(".css-1v1k4k").val();
+            let inquiryContent = $(".css-5etceh").val();
+
+            if(inquiryTitle==""||inquiryTitle.trim().length==0){
+                alert("제목을 입력해주세요");
+                $(".css-1v1k4k").val("");
+                $(".css-1v1k4k").focus();
+
+                return true;
+            }else if(inquiryContent==""||inquiryContent.trim().length==0){
+                alert("내용을 입력해주세요");
+                $(".css-5etceh").val("");
+                $(".css-5etceh").focus();
+                return true;
+            }
+            return false;
+        }
 
 
     </script>

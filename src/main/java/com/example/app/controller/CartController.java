@@ -1,9 +1,9 @@
 package com.example.app.controller;
 
-import com.example.app.domain.vo.Criteria;
-import com.example.app.domain.vo.ReplyDTO;
-import com.example.app.domain.vo.ReplyVO;
-import com.example.app.domain.vo.SerialVO;
+import com.example.app.domain.vo.*;
+import com.example.app.service.AddressService;
+import com.example.app.service.BoardService;
+import com.example.app.service.CartService;
 import com.example.app.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,21 @@ import java.util.Optional;
 @RequestMapping("/cart/*")
 public class CartController {
     private final ReplyService replyService;
+    private final CartService cartService;
+    private final BoardService boardService;
+    private final AddressService addressService;
+    // 장바구니 추가
+    @PostMapping("/add")
+    public String add(@RequestBody CartVO cartVO){
+        cartService.insertCart(cartVO);
+        return "insert success";
+    }
 
+    // 배송지 추가
+    @PostMapping("/address")
+    public void address(@RequestBody AddressVO addressVO){
+        addressService.insertAddress(addressVO);
+    }
 
     //    추가
     @PostMapping("/new")
@@ -25,11 +39,6 @@ public class CartController {
         return "write success";
     }
 
-    //    전체 조회
-    @GetMapping("/list/{boardNumber}/{page}")
-    public ReplyDTO list(@PathVariable("boardNumber") Long boardNumber, @PathVariable int page){
-        return new ReplyDTO(replyService.showAll(boardNumber, new Criteria().create(page, 10)), replyService.count(boardNumber));
-    }
 
 //    수정
 //    @PatchMapping(value = {"/{rno}", "/{rno}/{replyWriter}"})
