@@ -25,6 +25,17 @@ public class CartController {
         cartService.insertCart(cartVO);
         return "insert success";
     }
+    // 장바구니 검사
+    @PostMapping("/check")
+    public int check(@RequestBody int proId){
+        return cartService.checkCart(proId);
+    }
+
+    // 장바구니 삭제
+    @PostMapping("/delete")
+    public void delete(@RequestBody CartVO cartVO){
+        cartService.deleteCart(cartVO);
+    }
 
     // 배송지 추가
     @PostMapping("/address")

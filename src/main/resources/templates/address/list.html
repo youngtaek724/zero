@@ -36,23 +36,28 @@
                             <span class="css-0 e1dcessg1"></span>
                         </label>
                     </div>
+                    <form style="display: contents" th:action="@{/address/update}" method="post">
                     <div data-testid="address-area" class="css-82a6rk egfaucj3">
                         <span class="css-1pfhx0h egfaucj5" th:if="*{baseAddress=='Y'}">기본 배송지</span>
-                        <p class="css-12stxlh egfaucj4" th:text="*{memberAddress2}+' '+ *{memberAddress3}">서울 서초구 신반포로 270 (반포자이아파트) 112동 2401</p>
+                        <p class="css-12stxlh egfaucj4" th:text="*{memberAddress2}"></p>
+                        <p class="css-12stxlh egfaucj6" th:text="*{memberAddress3}"></p>
                         <div class="css-1gcxwpt">
-                            <span type="direct" class="css-z4mca9 e1jlkvf51" th:text="*{memberAddress1}">샛별배송</span>
+                            <span type="direct" class="css-z4mca9 e1jlkvf51" th:text="*{memberAddress1}"></span>
                         </div>
                     </div>
                     <div class="css-1g6fovq egfaucj0">
-                        <button aria-label="수정하기" data-testid="update-address-button" class="css-ik44wu egfaucj6"></button>
+                        <input style="display: none" id = "address2" type="text" th:field = "${address.memberAddress2}" >
+                        <input style="display:none;" id = "address3" type="text" th:field = "${address.memberAddress3}" >
+                        <button type="submit" aria-label="수정하기" data-testid="update-address-button" class="css-ik44wu egfaucj6"></button>
                     </div>
+                    </form>
                 </div>
                 </th:block>
             </div>
             <div class="css-m0h4tf e17o7yjp0">
                 <button class="css-1bqw8am e4nu7ef3" type="button" height="60">
                     <span class="css-ymwvow e4nu7ef1">
-                        <img src="https://res.kurly.com/pc/ico/2006/ico_add_16x16.svg" alt="" class="css-1m3kac1 e4nu7ef0">새 배송지 추가
+                        <img  src="https://res.kurly.com/pc/ico/2006/ico_add_16x16.svg" alt="" class="css-1m3kac1 e4nu7ef0">새 배송지 추가
                     </span>
                 </button>
             </div>
@@ -63,14 +68,24 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/cart.js"></script>
     <script th:inline="javascript">
-
     const $findAdd = $(".css-1bqw8am");
+    let $userNumber = [[${userNumber}]];
 
-    $findAdd.on("click", function(){
-        location.href = "/address/result";
+    $findAdd.on("click", function(){location.href = "/address/result";});
+
+    $(".egfaucj4").on("click",function () {
+        var address = $(this).text();
+        $(".useraddress", opener.document).text(address);
+        window.close();
+    })
+
+    $(".egfaucj6").on("click", function (e) {
+        var address2 = $(this).parent().prev().children('.egfaucj4').text();
+        var address3 = $(this).parent().prev().children('.egfaucj6').text();
+
+        $(this).prev().val(address2);
+        $(this).prev().prev().val(address3);
     });
-
-
     </script>
 </body>
 </html>

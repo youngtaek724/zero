@@ -39,5 +39,31 @@ public class ProductService {
         return productVO;
     }
 
+    // List 페이지 product 조건별 조회
+    public List<ProductVO> showProductByCondition(String code){
+        // 01 : 최신순 , 02 : 판매량 수,  03: 낮은 가격순, 04 : 높은 가격순
+        String condition;
+        switch (code){
+            case "01" :
+                condition = "PRO_INDATE DESC";
+                break;
+            case "02" :
+                condition = "PRO_NAME";  // 판매량 순으로 수정
+                break;
+            case "03" :
+                condition = "PRO_OUTPUT";
+                break;
+            case "04" :
+                condition = "PRO_OUTPUT DESC";
+                break;
+            default:condition="PRO_INDATE DESC";
+        }
 
+        return productDAO.showProductByCondition(condition);
+    }
+
+    // 카테고리 가져오기
+    public List<CategoryVO> showCategory(){
+        return productDAO.showCategory();
+    }
 }

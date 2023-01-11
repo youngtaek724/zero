@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <meta charset="utf-8" />
-    <title>핫식스-품앗이</title>
+    <title>zero</title>
       <!--폰트 관련 css-->
     <link
           rel="stylesheet"
@@ -75,11 +75,15 @@
                                   </svg>
                               </button>
                           </li>
-                          <li>
+
+                          <li th:if="${userNumber==null}">
                               <button class="signUpButton" type="button">회원가입/로그인</button>
                           </li>
+                        <li th:if="${userNumber!=null}">
+                          <button class="signUpButton" type="button" id = "logout">로그아웃</button>
+                        </li>
                           <li class="leftDivision">
-                              <a class="dashboardButton" href="/admin/userList">관리자 페이지</a>
+                              <a class="dashboardButton" href="/admin/productList">관리자 페이지</a>
                           </li>                        
                       </ul>
                   </aside>
@@ -467,6 +471,11 @@
       $(".signUpButton").on("click", function () {
         location.href = "/member/login";
       })
+
+      $("#logout").on("click", function () {
+          location.href = "/member/logout";
+      })
+
       rollingId = setInterval(function () {
         rollingStart();
       }, 10000);
@@ -493,6 +502,14 @@
              code='001'
              page = "/main/helpDesk"
              break;
+           case '002' :
+             code = '002'
+             page = "/mypage/myorder"
+             break;
+          case '003' :
+            code = '003'
+            page = "/product/list"
+            break;
            case '005' :
             code = '005'
             page = "/main/cart"

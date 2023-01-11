@@ -64,7 +64,15 @@
         WHERE PRO_ID = #{proId}
     </select>
 
+    <!-- 상품 List 최신순으로 조회 -->
+    <select id="selectIndate" resultType="productVO">
+        SELECT PRO_ID, PRO_NAME, PRO_SUBTITLE, PRO_OUTPUT, PRO_DISCOUNTYN, PRO_DISCOUNTPER FROM TBL_PRODUCT WHERE PRO_SHOWYN != 'N' ORDER BY ${condition}
+    </select>
 
+    <!-- 카테고리 가져오기 -->
+    <select id="selectCategory" resultType="categoryVO">
+        SELECT CATEGORY_NAME FROM TBL_CATEGORY ORDER BY CATEGORY_ID
+    </select>
 </mapper>
 
 

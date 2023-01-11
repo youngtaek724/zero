@@ -1,9 +1,6 @@
 package com.example.app.repository;
 
-import com.example.app.domain.vo.CartVO;
-import com.example.app.domain.vo.Criteria;
-import com.example.app.domain.vo.ProductVO;
-import com.example.app.domain.vo.SerialVO;
+import com.example.app.domain.vo.*;
 import com.example.app.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -37,4 +34,9 @@ public class ProductDAO {
     // product 상세 조회
     public ProductVO findProductDetail(int proId){return  productMapper.selectProduct(proId);}
 
+    // List product 조건 조회
+    public List<ProductVO> showProductByCondition(String condition){return productMapper.selectIndate(condition);}
+
+    // 카테고리 가져오기
+    public List<CategoryVO> showCategory(){return productMapper.selectCategory();}
 }

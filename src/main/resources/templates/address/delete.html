@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="kor" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/cart.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.3/dist/web/static/pretendard-dynamic-subset.css"/>
+    <link rel="stylesheet" href="/css/main_home.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/slick.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/product.css" >
+    <link rel="stylesheet" href="/css/cart.css" >
+</head>
+<body>
+    <div id="__next" data-reactroot="">
+
+    </div>
+
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/cart.js"></script>
+    <script th:inline="javascript">
+
+      alert("배송지가 삭제되었습니다")
+      opener.parent.location.reload();
+      window.close();
+    </script>
+</body>
+</html>

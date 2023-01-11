@@ -22,6 +22,15 @@ public class ProductController {
         model.addAttribute("product", productService.showProductDetail(proId));
         model.addAttribute("inquirys", boardService.showAllInquiry(proId));
     }
+    @GetMapping("/list")
+    public void productList(Model model, String code){
+        model.addAttribute("menus", productService.showMenu());
+        if(code==null){ code = "00";}
+        model.addAttribute("products", productService.showProductByCondition(code));
+        model.addAttribute("categories", productService.showCategory());
+    }
+
+
 }
 
 

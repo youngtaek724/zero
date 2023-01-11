@@ -16,6 +16,8 @@ public class MemberDAO {
 //    private final BoardMapper boardMapper;
     private final MemberMapper memberMapper;
 
-    public int login(MemberVO memberVO){return memberMapper.selectId(memberVO);}
 
+    public int login(MemberVO memberVO){
+        return memberMapper.login(memberVO);
+    }
 }

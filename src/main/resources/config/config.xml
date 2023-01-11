@@ -6,10 +6,12 @@
         <typeAlias type="com.example.app.domain.vo.MenuVO" alias="menuVO"/>
         <typeAlias type="com.example.app.domain.vo.SerialVO" alias="serialVO"/>
         <typeAlias type="com.example.app.domain.vo.UserVO" alias="userVO"/>
+        <typeAlias type="com.example.app.domain.vo.CategoryVO" alias="categoryVO"/>
         <typeAlias type="com.example.app.domain.vo.ReplyVO" alias="replyVO"/>
         <typeAlias type="com.example.app.domain.vo.BoardVO" alias="boardVO"/>
         <typeAlias type="com.example.app.domain.vo.ReplyDTO" alias="replyDTO"/>
         <typeAlias type="com.example.app.domain.vo.CartVO" alias="cartVO"/>
+        <typeAlias type="com.example.app.domain.vo.CartDTO" alias="cartDTO"/>
         <typeAlias type="com.example.app.domain.vo.InquiryVO" alias="inquiryVO"/>
         <typeAlias type="com.example.app.domain.vo.AddressVO" alias="addressVO"/>
         <typeAlias type="com.example.app.domain.vo.MemberVO" alias="memberVO"/>

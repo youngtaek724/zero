@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="kor" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/cart.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.3/dist/web/static/pretendard-dynamic-subset.css"/>
+    <link rel="stylesheet" href="/css/main_home.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/slick.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/product.css" >
+    <link rel="stylesheet" href="/css/cart.css" >
+</head>
+<body>
+    <div id="__next" data-reactroot="">
+        <div class="css-y8vf74 e1k348234">
+            <h2 class="css-3ljxig e1k348233">배송지 수정</h2>
+            <div class="css-1ghu3wd e1k348232" th:object="${info}">
+                <span class="css-ob9vzc e1k348231">기본 배송지</span>
+                <div class="css-1n57dna e1uzxhvi6">
+                    <label for="addressDetail" class="css-c3g9of e1uzxhvi4" th:text="*{memberAddress3}">서울 서초구 신반포로 270 (반포자이아파트)</label>
+                    <div height="44" class="css-t7kbxx e1uzxhvi3">
+                        <input  placeholder="나머지 주소를 입력해 주세요" type="text" height="44" class="css-n2am0u e1uzxhvi2" id  = "address2"></div>
+                </div>
+                <div class="css-s480k4 e1uzxhvi6">
+                    <label for="name" class="css-c3g9of e1uzxhvi4">받으실 분</label>
+                    <div height="44" class="css-t7kbxx e1uzxhvi3">
+                        <input data-testid="input-box" id="name" name="name" placeholder="이름을 입력해 주세요" type="text" height="44" class="css-n2am0u e1uzxhvi2" value="">
+                    </div>
+                </div>
+                <div class="css-s480k4 e1uzxhvi6">
+                    <label for="mobile" class="css-c3g9of e1uzxhvi4">휴대폰</label>
+                    <div height="44" class="css-t7kbxx e1uzxhvi3">
+                        <input data-testid="input-box" id="mobile" name="mobile" placeholder="번호를 입력해 주세요" type="tel" height="44" class="css-n2am0u e1uzxhvi2" value="">
+                    </div>
+                </div>
+            </div>
+            <div type="default" class="css-fkdfsr e1k348230">
+                <button class="css-10voksq e4nu7ef3" type="button" height="44" radius="3">
+                    <span class="css-ymwvow e4nu7ef1">저장</span>
+                </button>
+                <button class="css-11voksq e4nu7ef3" type="button" height="44" radius="3">
+                    <span class="css-ymwvow e4nu7ef1" id="delete">삭제</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/cart.js"></script>
+    <script th:inline="javascript">
+    const $findAdd = $(".css-1bqw8am");
+    let userNumber = [[${userNumber}]];
+    let address2 = [[${info.memberAddress2}]];
+    $("#address2").val(address2);
+    $("#address2").text(address2);
+
+    $findAdd.on("click", function(){location.href = "/address/result";});
+    $(".egfaucj4").on("click",function () {
+        var address = $(this).text();
+        $(".useraddress", opener.document).text(address);
+        window.close();
+    })
+
+        $("#delete").on("click",function () {
+            if(confirm("배송지를 삭제하시겠습니까?")){
+                location.href = "/address/delete"+"?userNumber="+userNumber+"&memberAddress3="+address2;
+            }
+        })
+    </script>
+</body>
+</html>

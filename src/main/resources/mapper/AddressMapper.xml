@@ -21,6 +21,17 @@
     <update id="update">
         UPDATE TBL_MEMBER_ADDRESS SET BASE_ADDRESS = 'N' WHERE BASE_ADDRESS = 'Y' AND USER_NUMBER = #{userNumber}
     </update>
+
+    <!-- 초기 주소 조회 -->
+    <select id="selectBase" resultType="addressVO">
+        SELECT MEMBER_ADDRESS2 ADDRESSTWO, MEMBER_ADDRESS3 ADDRESSTHREE FROM TBL_MEMBER_ADDRESS WHERE USER_NUMBER = #{userNumber} AND BASE_ADDRESS = 'Y'
+    </select>
+
+    <!-- 주소 삭제 -->
+    <delete id="delete">
+        DELETE FROM TBL_MEMBER_ADDRESS WHERE USER_NUMBER = #{userNumber} and MEMBER_ADDRESS3 = #{memberAddress3}
+    </delete>
+
 </mapper>
 
 

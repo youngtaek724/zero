@@ -26,4 +26,10 @@ public class AddressService {
 
     // 배송지 초기화
     public void update(int userNumber){addressDAO.update(userNumber);}
+
+    // 초기 배송지 조회
+    public AddressVO findBase(int userNumber){ return addressDAO.findBase(userNumber); }
+
+    // 배송지 삭제
+    public void remove(int userNumber, String memberAddress3){addressDAO.deleteAddress(userNumber, memberAddress3);}
 }

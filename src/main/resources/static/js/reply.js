@@ -50,6 +50,7 @@ let replyService = (function(){
             }
         })
     }
+
     function modify(reply, callback, error){
         $.ajax({
             url: "/reply/modify",

@@ -15,56 +15,60 @@
     <link rel="stylesheet" href="/css/cart.css" >
 </head>
 <body>
-    <!--header (나중에 제거)-->
-    <button class="abc">버튼</button>
-    <div id="__next">
-        <div class="NavBar_container">
-            <div class="MainBar_width">
-                <nav class="MainBar_flex">
-                    <div class="MainBar_logoBox">
-                        <div>
-                            <!-- 좌측 상단 햄버거 이미지-->
-                            <button type="button" class="MainBar_hamberger">
-                                <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Ficon-menu.png&amp;w=undefined&amp;q=75" alt="hamberger menu" style="width:17px;height:14px;object-fit:contain">
-                            </button>
-                            <a href="/" class="MainBar_logo">
-                                <!--로고 : 74*16 -->
-                                <i></i>
-                            </a>
-                        </div>
+<!--header (나중에 제거)-->
+<button class="abc">버튼</button>
+<div id="__next">
+    <div class="NavBar_container">
+        <div class="MainBar_width">
+            <nav class="MainBar_flex">
+                <div class="MainBar_logoBox">
+                    <div>
+                        <!-- 좌측 상단 햄버거 이미지-->
+                        <button type="button" class="MainBar_hamberger">
+                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Ficon-menu.png&amp;w=undefined&amp;q=75" alt="hamberger menu" style="width:17px;height:14px;object-fit:contain">
+                        </button>
+                        <a href="/" class="MainBar_logo">
+                            <!--로고 : 74*16 -->
+                            <i></i>
+                        </a>
                     </div>
-                    <ul class="menu_name_list">
-                        <th:block th:each="menu:${menus}">
-                            <li class="" th:object="${menu}">
-                                <a th:href="*{menuCode}" class="read" th:text="*{menuName}">홈</a>
-                            </li>
-                        </th:block>
+                </div>
+                <ul class="menu_name_list">
+                    <th:block th:each="menu:${menus}">
+                        <li class="" th:object="${menu}">
+                            <a th:href="*{menuCode}" class="read" th:text="*{menuName}">홈</a>
+                        </li>
+                    </th:block>
+                </ul>
+                <aside class="Aside_box">
+                    <ul>
+                        <li>
+                            <button class="searchButton" type="button">
+                                <svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                                    <defs>
+                                        <path id="qt2dnsql4a" d="M15.727 17.273a.563.563 0 10.796-.796l-4.875-4.875-.19-.165a.563.563 0 00-.764.028 5.063 5.063 0 111.261-2.068.562.562 0 101.073.338 6.188 6.188 0 10-1.943 2.894l4.642 4.644z"></path>
+                                    </defs>
+                                    <g fill="none" fill-rule="evenodd">
+                                        <use fill="#333" fill-rule="nonzero" stroke="#333" stroke-width=".3" xlink:href="#qt2dnsql4a"></use>
+                                    </g>
+                                </svg>
+                            </button>
+                        </li>
+
+                        <li th:if="${userNumber==null}">
+                            <button class="signUpButton" type="button">회원가입/로그인</button>
+                        </li>
+                        <li th:if="${userNumber!=null}">
+                            <button class="signUpButton" type="button" id = "logout">로그아웃</button>
+                        </li>
+                        <li class="leftDivision">
+                            <a class="dashboardButton" href="/admin/userList">관리자 페이지</a>
+                        </li>
                     </ul>
-                    <aside class="Aside_box">
-                        <ul>
-                            <li>
-                                <button class="searchButton" type="button">
-                                    <svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
-                                        <defs>
-                                            <path id="qt2dnsql4a" d="M15.727 17.273a.563.563 0 10.796-.796l-4.875-4.875-.19-.165a.563.563 0 00-.764.028 5.063 5.063 0 111.261-2.068.562.562 0 101.073.338 6.188 6.188 0 10-1.943 2.894l4.642 4.644z"></path>
-                                        </defs>
-                                        <g fill="none" fill-rule="evenodd">
-                                            <use fill="#333" fill-rule="nonzero" stroke="#333" stroke-width=".3" xlink:href="#qt2dnsql4a"></use>
-                                        </g>
-                                    </svg>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="signUpButton" type="button">회원가입/로그인</button>
-                            </li>
-                            <li class="leftDivision">
-                                <a class="dashboardButton" href="/admin/userList">관리자 페이지</a>
-                            </li>
-                        </ul>
-                    </aside>
-                </nav>
-            </div>
+                </aside>
+            </nav>
         </div>
+    </div>
     <!--header 끝 (나중에 제거)-->
         <div class="css-1pz4b76 er0tf675">
             <h2 class="css-1n2hipb er0tf674">장바구니</h2>
@@ -83,18 +87,21 @@
                         </div>
                     </div>
                     <div class="css-2lvxh7 ej77nku0">
-                        <div>
+                        <div th:if="${products}==null" class="css-2lvxh7 ej77nku0"><p class="css-l1lu2l eqymnpn0">장바구니에 담긴 상품이 없습니다</p></div>
+                        <div th:if="${products != null}">
+
                             <h4 class="css-td54hr e1w1cmkx0">
                                 <span class="css-1nzj0g2 e6yclqm1">
                                     <span class="css-12dwhid e6yclqm0">
                                         <span class="css-qct1ee ev909jf0"></span>
-                                    </span>냉장 상품
+                                    </span>장바구니 목록
                                 </span>
                                 <button class="css-lvqq7y e17cst861">
                                     <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iN2EwMnFxZzNqYSIgZD0iTTExIDEyaDl2OSIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMCAwaDMwdjMwSDB6Ii8+CiAgICAgICAgPHVzZSBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1IDE1LjUgMTYuNSkiIHhsaW5rOmhyZWY9IiM3YTAycXFnM2phIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="접기" class="css-hvzkdq e17cst860">
                                 </button>
                             </h4>
-                            <ul>
+                            <th:block th:each="product:${products}">
+                            <ul th:object="${product}">
                                 <li class="css-1d6kgf6 esoayg811">
                                     <label class="css-dar8hv e1dcessg3">
                                         <input type="checkbox" class="css-agvwxo e1dcessg2" checked="">
@@ -106,92 +113,25 @@
                                     </a>
                                     <div class="css-14sb0pe esoayg88">
                                         <a class="css-e0dnmk esoayg87">
-                                            <p class="css-5cezqo esoayg86">[올림푸스] 무지방 0% 블루베리 그릭요거트</p>
-                                            <p data-testid="content-product-name" class="css-3izcs6 esoayg85">[올림푸스] 그리스 과일 요거트 3종 (택 1)</p>
+                                            <p class="css-5cezqo esoayg86" th:text="*{proName}">[올림푸스] 무지방 0% 블루베리 그릭요거트</p>
                                         </a>
-                                        <div class="css-ar9i78 esoayg82"></div>
                                     </div>
-                                    <div class="css-1gueo66 e1cqr3m40">
-                                        <button type="button" aria-label="수량내리기" disabled="" class="css-1e90glc e1hx75jb0"></button>
-                                        <div class="count css-6m57y0 e1cqr3m41">1</div>
-                                        <button type="button" aria-label="수량올리기" class="css-18y6jr4 e1hx75jb0"></button>
+                                    <div class="css-ar9i78 esoayg82" style="display: none" th:name="*{proPrice}" th:text="*{proPrice}"></div>
+                                    <div class="css-1gueo66 e1cqr3m40" value = 1>
+                                        <button th:if="*{proCount}==1" type="button" aria-label="수량내리기" disabled="" class="css-1e90glc e1hx75jb0 countA"></button>
+                                        <button th:if="*{proCount}!=1" type="button" aria-label="수량내리기" th:name="*{proId}" class="css-8azp8 e1hx75jb0 countA"></button>
+                                        <div class="count css-6m57y0 e1cqr3m41"  th:id="*{proId}" th:text="*{proCount}" th:value="*{proCount}">1</div>
+                                        <button type="button" aria-label="수량올리기" class="css-18y6jr4 e1hx75jb0" th:name="*{proId}"></button>
                                     </div>
                                     <div class="css-5w3ssu esoayg84">
-                                        <span aria-label="권장 소비자 가격" data-testid="product-price" class="css-zq4evb e2qzex51">5,900원</span>
+                                        <span aria-label="권장 소비자 가격" data-testid="product-price" class="css-zq4evb e2qzex51"th:name="*{proOutput}" th:text="*{proOutput}**{proCount}">5,900원</span>
                                     </div>
                                     <button class="css-h5zdhc eudrkjx0" type="button" data-testid="delete">
-                                        <span class="css-6mgkir e5h3i930"></span>
-                                    </button>
-                                </li>
-                                <li class="css-1d6kgf6 esoayg811">
-                                    <label class="css-dar8hv e1dcessg3">
-                                        <input type="checkbox" class="css-agvwxo e1dcessg2" checked="">
-                                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">
-                                        <span class="css-0 e1dcessg1"></span>
-                                    </label>
-                                    <a class="css-3u0haf esoayg810">
-                                        <span class="css-1rli23o esoayg89"></span>
-                                    </a>
-                                    <div class="css-14sb0pe esoayg88">
-                                        <a class="css-e0dnmk esoayg87">
-                                            <p class="css-5cezqo esoayg86">[올림푸스] 무지방 0% 블루베리 그릭요거트</p>
-                                            <p data-testid="content-product-name" class="css-3izcs6 esoayg85">[올림푸스] 그리스 과일 요거트 3종 (택 1)</p>
-                                        </a>
-                                        <div class="css-ar9i78 esoayg82"></div>
-                                    </div>
-                                    <div class="css-1gueo66 e1cqr3m40">
-                                        <button type="button" aria-label="수량내리기" disabled="" class="css-1e90glc e1hx75jb0"></button>
-                                        <div class="count css-6m57y0 e1cqr3m41">1</div>
-                                        <button type="button" aria-label="수량올리기" class="css-18y6jr4 e1hx75jb0"></button>
-                                    </div>
-                                    <div class="css-5w3ssu esoayg84">
-                                        <span aria-label="권장 소비자 가격" data-testid="product-price" class="css-zq4evb e2qzex51">5,900원</span>
-                                    </div>
-                                    <button class="css-h5zdhc eudrkjx0" type="button" data-testid="delete">
-                                        <span class="css-6mgkir e5h3i930"></span>
+                                        <span class="css-6mgkir e5h3i930" th:name="*{proId}"></span>
                                     </button>
                                 </li>
                             </ul>
-                            <h4 class="css-td54hr e1w1cmkx0">
-                                <span class="css-1nzj0g2 e6yclqm1">
-                                    <span class="css-12dwhid e6yclqm0">
-                                        <span class="css-1791hip e1i6zhfu0"></span>
-                                    </span>냉동 상품
-                                </span>
-                                <button class="css-lvqq7y e17cst861">
-                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iN2EwMnFxZzNqYSIgZD0iTTExIDEyaDl2OSIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMCAwaDMwdjMwSDB6Ii8+CiAgICAgICAgPHVzZSBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1IDE1LjUgMTYuNSkiIHhsaW5rOmhyZWY9IiM3YTAycXFnM2phIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="접기" class="css-hvzkdq e17cst860">
-                                </button>
-                            </h4>
-                            <ul>
-                                <li class="css-1d6kgf6 esoayg811">
-                                    <label class="css-dar8hv e1dcessg3">
-                                        <input type="checkbox" class="css-agvwxo e1dcessg2" checked="">
-                                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="css-1wfsi82 e31wziv0">
-                                        <span class="css-0 e1dcessg1"></span>
-                                    </label>
-                                    <a class="css-3u0haf esoayg810">
-                                        <span class="css-1qwino6 esoayg89"></span>
-                                    </a>
-                                    <div class="css-14sb0pe esoayg88">
-                                        <a class="css-e0dnmk esoayg87">
-                                            <p class="css-5cezqo esoayg86">[올림푸스] 무지방 0% 블루베리 그릭요거트</p>
-                                            <p data-testid="content-product-name" class="css-3izcs6 esoayg85">[올림푸스] 그리스 과일 요거트 3종 (택 1)</p>
-                                        </a>
-                                        <div class="css-ar9i78 esoayg82"></div>
-                                    </div>
-                                    <div class="css-1gueo66 e1cqr3m40">
-                                        <button type="button" aria-label="수량내리기" disabled="" class="css-1e90glc e1hx75jb0"></button>
-                                        <div class="count css-6m57y0 e1cqr3m41">1</div>
-                                        <button type="button" aria-label="수량올리기" class="css-18y6jr4 e1hx75jb0"></button>
-                                    </div>
-                                    <div class="css-5w3ssu esoayg84">
-                                        <span aria-label="권장 소비자 가격" data-testid="product-price" class="css-zq4evb e2qzex51">5,900원</span>
-                                    </div>
-                                    <button class="css-h5zdhc eudrkjx0" type="button" data-testid="delete">
-                                        <span class="css-6mgkir e5h3i930"></span>
-                                    </button>
-                                </li>
-                            </ul>
+                            </th:block>
                         </div>
                     </div>
                     <div class="css-20o6z0 e149z643">
@@ -209,12 +149,16 @@
                 <div class="css-1dta0ch er0tf671">
                     <div class="css-snlo96 er0tf670">
                         <div class="css-oft680 e15fcx0p3">
-                            <h3 class="css-1guaarh e15fcx0p2">배송지</h3>
+                            <h3  class="css-1guaarh e15fcx0p2">배송지</h3>
                             <div class="css-50yi3o e15fcx0p1">
-                                <p class="css-iba1ml e1321nl41">
+                                <p th:if="${address}" th:text="${address.addressTwo}" class="css-xxfxl7 e1tweaw10 useraddress"></p>
+                                <!--/*@thymesVar id="addressThress" type=""*/-->
+                                <p th:if="${address}" th:text="${address.addressThree}"class="css-xxfxl7 e1tweaw10 useraddress"></p>
+                                <p th:unless="${address}" class="css-iba1ml e1321nl41 useraddress" id = "modalAddress">
                                     <em>배송지를 등록</em>하고<br>
                                     <span class="css-1bmnxg7 e1321nl40">구매 가능한 상품을 확인하세요!</span>
                                 </p>
+
                                 <button class="css-1bh2ea0 e4nu7ef3" type="button" height="36" radius="3">
                                     <span class="css-ymwvow e4nu7ef1">
                                         <img src="https://res.kurly.com/pc/service/cart/2007/ico_search.svg" alt="" class="css-1m3kac1 e4nu7ef0">주소 검색
@@ -225,27 +169,27 @@
                         <div class="css-1t6so8j em21elb0">
                             <div class="css-8jmoub ea1mry77">
                                 <span class="css-vmo0an ea1mry76">상품금액</span>
-                                <span class="css-iinokh ea1mry74">0
+                                <span class="css-iinokh ea1mry74 total1">0
                                     <span class="css-hfgifi ea1mry72">원</span>
                                 </span>
                             </div>
                             <div class="css-t4mc5m ea1mry77">
                                 <span class="css-vmo0an ea1mry76">상품할인금액</span>
-                                <span class="css-iinokh ea1mry74">0
+                                <span class="css-iinokh ea1mry74 total2">0
                                     <span class="css-hfgifi ea1mry72">원</span>
                                 </span>
                             </div>
                             <p class="css-1ma9cls enghpni0">로그인 후 할인 금액 적용</p>
                             <div class="css-t4mc5m ea1mry77">
                                 <span class="css-vmo0an ea1mry76">배송비</span>
-                                <span class="css-iinokh ea1mry74">0
+                                <span class="css-iinokh ea1mry74 ">0
                                     <span class="css-hfgifi ea1mry72">원</span>
                                 </span>
                             </div>
                             <div class="css-7ygxxm eepcpbj4">
                                 <span class="css-vmo0an eepcpbj3">결제예정금액</span>
                                 <span class="css-da7gr8 eepcpbj2">
-                                    <strong class="css-xmbce4 eepcpbj0">0</strong>
+                                    <strong class="css-xmbce4 eepcpbj0 total3">0</strong>
                                     <span class="css-aro4zf eepcpbj1">원</span>
                                 </span>
                             </div>
@@ -275,12 +219,16 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/cart.js"></script>
     <script th:inline="javascript">
-
-
         const $read = $("a.read");
-
-
-
+        let $userNumber = [[${userNumber}]];
+        let count = parseInt($(".count").attr("value"));
+        let countA = $(".countA");
+        let cnt;
+        let plus = $(".css-18y6jr4");
+        var minus = $(".countA");
+        let total = 0;
+        let saleTotal = 0;
+        console.log($userNumber);
         $read.on("click", function(e){
             e.preventDefault();
             let code = $(this).attr("href");
@@ -293,10 +241,33 @@
                     code='001'
                     page = "/main/helpDesk"
                     break;
+                case '002' :
+                    code = '002'
+                    page = "/mypage/myorder"
+                    break;
+                case '005' :
+                    code = '005'
+                    page = "/main/cart"
+                    break;
             }
             location.href = page;
         });
+        getTotal();
+        function getTotal(){
+            total = 0;
+            $(".e1cqr3m40").each(function () {
+                var firstPrice = parseInt($(this).next().children('span').text());
+                var salePrice = parseInt($(this).prev().text());
+                var count = $(this).children('div').text();
 
+                total += firstPrice;
+                saleTotal += (salePrice*count);
+            })
+            $(".total1").text(total);
+            $(".total2").text(total-saleTotal);
+            $(".total3").text(saleTotal);
+        }
+        console.log(total);
         function openPopup(){
             let url = "/address/list";
             let option = "width = 500px, height = 500px, top = 100, left = 100, location = no"
@@ -304,9 +275,81 @@
         }
 
         $(".css-1bh2ea0").on("click", function () {
+            if($userNumber==null){
+                alert("로그인 후 이용해주세요");
+                return;
+            }
             openPopup();
         })
+        $(".signUpButton").on("click", function () {
+            location.href = "/member/login";
+        })
 
+        $("#logout").on("click", function () {
+            location.href = "/member/logout";
+        })
+
+        plus.on("click", function () {
+            var count = parseInt($(this).prev().text());
+            var plusPrice = parseInt($(this).parent().next().children('span').text());
+            var orgPrice = plusPrice/count;
+            var salePrice = parseInt($(this).parent().prev().text());
+            count = count+1;
+            plusPrice += orgPrice;
+            total += orgPrice;
+            saleTotal += salePrice;
+            $(this).prev().text(count);
+            $(this).parent().next().children('span').text(plusPrice);
+            totalPrice(total, saleTotal);
+
+            if(count>1){
+                $(this).prev().prev().removeClass("css-1e90glc");
+                $(this).prev().prev().addClass("css-8azp8");
+                $(this).prev().prev().removeAttr("disabled");
+            }
+        })
+
+        function totalPrice(total, saleTotal){
+            $(".total1").text(total);
+            $(".total3").text(saleTotal);
+            $(".total2").text(total-saleTotal);
+        }
+
+        minus.on("click", function () {
+            var minuscount = parseInt($(this).next().text());
+            var minusPrice = parseInt($(this).parent().next().children('span').text());
+            var orgPrice = minusPrice/minuscount;
+            var salePrice = parseInt($(this).parent().prev().text());
+            minuscount -= 1;
+            minusPrice -= orgPrice;
+            total -= orgPrice;
+            saleTotal -= salePrice;
+            $(this).next().text(minuscount);
+            $(this).parent().next().children('span').text(minusPrice);
+            totalPrice(total, saleTotal);
+
+            if(minuscount==1){
+                $(this).removeClass("css-8azp8");
+                $(this).addClass("css-1e90glc");
+                $(this).attr("disabled", "disabled");
+            }
+        })
+
+        $(".e5h3i930").on("click", function (e) {
+            var result = confirm("삭제하시겠습니까?");
+            if(result){
+                e.preventDefault();
+                var proId = $(this).attr('name');
+
+                cartService.deleteCart({
+                    proId: proId,
+                    userNumber: $userNumber,
+                }, function(){
+                    alert("삭제되었습니다");
+                    location.reload();
+                });
+            }
+        })
     </script>
 </body>
 

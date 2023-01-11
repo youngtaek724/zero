@@ -27,4 +27,9 @@ public interface ProductMapper {
 // product 상세 정보
     public ProductVO selectProduct(int proId);
 
+// List 페이지 물품 전체(조건) 조회
+    public List<ProductVO> selectIndate(String condition);
+
+// 카테고리 이름 가져오기
+    public List<CategoryVO> selectCategory();
 }

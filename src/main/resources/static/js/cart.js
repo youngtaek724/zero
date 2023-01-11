@@ -21,6 +21,44 @@ let cartService = (function(){
             }
         });
     }
+    function deleteCart (cart, callback, error){
+        $.ajax({
+            url : "/cart/delete",
+            type : "post",
+            data : JSON.stringify(cart),
+            contentType:"application/json; charset=utf-8",
+            success:function(result){
+                if(callback){
+                    callback(result);
+                }
+            },
+            error: function(a, b, c){
+                if(error){
+                    error(a, b, c);
+                }
+            }
+        })
+    }
+    function check(cart, callback, error){
+        $.ajax({
+            url : "/cart/check",
+            type : "post",
+            data: JSON.stringify(cart),
+            contentType: "application/json; charset=utf-8", //data에 JSON 작성 시 반드시 contentType 작성
+            success: function(result){
+                if(callback){
+                    callback(result)
+                }
+            },
+            error: function(a, b, c){
+                if(error){
+                    error(a, b, c);
+                }
+            }
+        })
+    }
+
+
 
     function addInquiry(cart, callback, error){
         $.ajax({
@@ -47,11 +85,10 @@ let cartService = (function(){
             url: "/board/readInquiry/" + inqProductId,
             success: function(replies){
                 if (callback){
-                    console.log(replies);
                     callback(replies);
                 }
             }
         })
     }
-    return {add: add, addInquiry:addInquiry, getInquiry:getInquiry}
+    return {add: add, addInquiry:addInquiry, getInquiry:getInquiry, check:check, deleteCart:deleteCart}
 })();

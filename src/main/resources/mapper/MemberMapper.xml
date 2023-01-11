@@ -6,6 +6,20 @@
         SELECT USER_NUMBER FROM TBL_MEMBER
         WHERE USER_ID = #{userId} AND USER_PASSWORD = #{userPassword}
     </select>
+
+    <select id="checkId" resultType="_int">
+        SELECT COUNT(USER_NUMBER) FROM TBL_MEMBER WHERE USER_ID = #{userId}
+    </select>
+
+    <!-- 회원가입-->
+    <insert id="join">
+
+    </insert>
+
+    <!-- 로그인 -->
+    <select id="login" resultType="_int">
+        SELECT USER_NUMBER FROM TBL_MEMBER WHERE USER_ID = #{userId} AND USER_PASSWORD = #{userPassword}
+    </select>
 </mapper>
 
 

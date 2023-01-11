@@ -675,8 +675,14 @@
         }
 
         countA.attr("disabled", "disabled");
+
         plus.on("click", function () {
             count += 1;
+            cnt.text(count);
+        })
+
+        minus.on("click", function () {
+            count -= 1;
             cnt.text(count);
         })
 
@@ -686,10 +692,6 @@
             });
         });
 
-        minus.on("click", function () {
-            count -= 1;
-            cnt.text(count);
-        })
 
         $(".e1hx75jb0").on("click", function () {
             if(count>1){
@@ -716,14 +718,20 @@
 
         cart.on("click", function (e) {
             e.preventDefault();
-
-            cartService.add({
-                userNumber: 2,
-                proId: proId,
-                proCount: count,
-                proPrice : price
-            }, function(){
-                alert("장바구니에 추가되었습니다");
+            cartService.check(proId, function (result) {
+                if(result!=0){
+                    alert("이미 장바구니에 추가된 상품입니다");
+                    return;
+                }else{
+                    cartService.add({
+                        userNumber: 2,
+                        proId: proId,
+                        proCount: count,
+                        proPrice : price
+                    }, function(){
+                        alert("장바구니에 추가되었습니다");
+                    });
+                }
             });
         });
 
@@ -739,6 +747,14 @@
                 case '001' :
                     code='001'
                     page = "/main/helpDesk"
+                    break;
+                case '002' :
+                    code = '002'
+                    page = "/mypage/login"
+                    break;
+                case '005' :
+                    code = '005'
+                    page = "/main/cart"
                     break;
             }
             location.href = page;

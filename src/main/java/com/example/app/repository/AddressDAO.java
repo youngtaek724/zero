@@ -24,6 +24,12 @@ public class AddressDAO {
     // 배송지 초기화
     public void update(int userNumber){addressMapper.update(userNumber);}
 
+    // 초기 배송지 조회
+    public AddressVO findBase(int userNumber){return addressMapper.selectBase(userNumber);}
+
+    // 배송지 삭제
+    public void deleteAddress(int userNumber, String memberAddress3){addressMapper.delete(userNumber, memberAddress3);}
+
 }
 
 

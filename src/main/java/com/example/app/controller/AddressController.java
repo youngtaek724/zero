@@ -12,16 +12,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 import org.thymeleaf.model.IModel;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/address/*")
 public class AddressController {
     private final AddressService addressService;
-
+    private final HttpSession session;
     @GetMapping("/list")
     public void list(Model model){
-        model.addAttribute("addresses", addressService.showAll(2));
+        model.addAttribute("userNumber", session.getAttribute("userNumber"));
+        model.addAttribute("address", new AddressVO());
+        if(session.getAttribute("userNumber")!=null) {
+            model.addAttribute("addresses", addressService.showAll((int) session.getAttribute("userNumber")));
+        }
     };
+
+    @PostMapping("/update")
+    public void update(AddressVO addressVO, Model model){
+        model.addAttribute("info", addressVO);
+        if(session.getAttribute("userNumber")!=null) {
+            model.addAttribute("userNumber", session.getAttribute("userNumber"));
+        }
+    }
 
     @GetMapping("/result")
     public void result(Model model){
@@ -33,6 +47,13 @@ public class AddressController {
         addressService.insertAddress(addressVO);
     }
 
+    @GetMapping("/delete")
+    public void delete(int userNumber, String memberAddress3){
+        System.out.println(userNumber);
+        System.out.println(memberAddress3);
+
+        addressService.remove(userNumber, memberAddress3);
+    }
 }
 
 
