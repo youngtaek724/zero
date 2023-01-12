@@ -28,6 +28,7 @@
                         <!-- 좌측 상단 햄버거 이미지-->
                         <button type="button" class="MainBar_hamberger">
                             <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Ficon-menu.png&amp;w=undefined&amp;q=75" alt="hamberger menu" style="width:17px;height:14px;object-fit:contain">
+
                         </button>
                         <a href="/" class="MainBar_logo">
                             <!--로고 : 74*16 -->
@@ -71,7 +72,7 @@
     <div class="css-emt8cc e12kjs5e0">
         <div id="container" class="css-1i60c0e e13nsthd2"><div class="css-1azakc e13967gz1">
             <a href="https://www.kurly.com/categories/490">
-                <img src="https://collection-image.kurly.com/product-collections/2451/gHxXd1ydNdycQjE4YpzAcpOyb4UCgT1g7yOoNqzn.jpg" alt="배너 이미지" class="css-1217fb7 e13967gz0">
+              <!--  <img src="/images/noImg.png" alt="배너 이미지" class="css-1217fb7 e13967gz0">-->
             </a>
         </div>
             <h3 class="css-i804ml eaf14xt0">신상품</h3>
@@ -206,7 +207,7 @@
                 </div>
                 <div class="css-1d3w5wq ef36txc6">
                     <div class="css-1stur9s eudxpx34">
-                        <div class="css-crqql1 eudxpx33">총 170건</div>
+                        <div class="css-crqql1 eudxpx33" th:text="'총 '+${count}+'건'">총 170건</div>
                         <ul class="css-1vmfy7j eudxpx32">
                             <li class="css-5uzvtq eudxpx31">
                                 <a href="/collections/market-newproduct?page=1&amp;per_page=96&amp;sorted_type=4" class="css-19ce13b eudxpx30">추천순</a>
@@ -229,16 +230,16 @@
                                 <a href="/collections/market-newproduct?page=1&amp;per_page=96&amp;sorted_type=5" class="css-19ce13b eudxpx30">혜택순</a>
                             </li>
                             <li class="css-5uzvtq eudxpx31">
-                                <a th:href="@{/product/list?code=03}" class="css-19ce13b eudxpx30">낮은 가격순</a>
+                                <a th:href="@{/product/list?code=03}" class="css-19ce13b eudxpx30" id = "lowPrice">낮은 가격순</a>
                             </li>
                             <li class="css-5uzvtq eudxpx31">
-                                <a th:href="@{/product/list?code=04}" class="css-19ce13b eudxpx30">높은 가격순</a>
+                                <a th:href="@{/product/list?code=04}" class="css-19ce13b eudxpx30" id = "highPrice">높은 가격순</a>
                             </li>
                         </ul>
                     </div>
                     <div class="css-11kh0cw ef36txc5">
                         <th:block th:each="product:${products}">
-                        <a href="/goods/1000122270" class="css-1xyd46f e1c07x4814" th:object="${product}">
+                        <a class="css-1xyd46f e1c07x4814" th:object="${product}">
                             <div class="css-0 e1c07x4812" th:id="*{proId}">
                                 <div class="e1c07x4813 css-1mlybuj e3um3060">
                                     <img src="/images/noImg.png" alt="상품 이미지" loading="lazy">
@@ -258,7 +259,7 @@
                                 <div class="e1c07x487 css-1t4zbyd ei5rudb2">
                                     <div>
                                         <span th:if="*{proDiscountYN=='Y'}" th:text="*{proDiscountPer}+'%'" class="discount-rate css-19lkxd2 ei5rudb0">5%</span>
-                                        <span th:text="*{proOutput}+ ' 원'" class="sales-price css-18tpqqq ei5rudb1">6,840
+                                        <span th:text="*{proOutput}+' 원'" class="sales-price css-18tpqqq ei5rudb1">6,840
                                         <span class="won">원</span>
                                     </span>
                                     </div>
@@ -369,20 +370,99 @@
                 <span class="css-1s8889c e14jm1lg0"></span>
             </a>
         </div>
+
     </div>
+
+</div>
+
+<!--팝업-->
+<div role="presentation" class="MuiModal-root MuiDialog-root css-98q5jm" style="display: none">
+    <div aria-hidden="true" class="MuiBackdrop-root css-919eu4" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"></div>
+    <div tabindex="0" data-test="sentinelStart"></div>
+    <div class="MuiDialog-container MuiDialog-scrollPaper css-ekeie0" role="presentation" tabindex="-1" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;">
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm css-uhb5lp" role="dialog" aria-labelledby="customized-dialog-title">
+            <div class="css-155nkqq e1xnucib1">
+                <div class="css-1sjnt6v e1b27mtb8">
+                    <div class="css-1066lcq e1b27mtb7">
+                        <span class="css-rsi182 e1b27mtb6">[피쿠알리아] 퍼스트 데이 하베스트 리미티드 에디션 피쿠알 엑스트라버진 500ml</span>
+                    </div>
+                    <div class="css-1sr55yd e1b27mtb4">
+                        <div class="css-0 e1b27mtb3">
+                            <span class="css-1jjhy4o e1b27mtb2">59,850원</span>
+                            <span class="css-16pwusi e1b27mtb1">99,000원</span>
+                        </div>
+                        <div class="e1b27mtb0 css-2v1lnp e1cqr3m40">
+                            <button type="button" aria-label="수량내리기" disabled="" class="css-1e90glc e1hx75jb0"></button>
+                            <div class="count css-6m57y0 e1cqr3m41">1</div>
+                            <button type="button" aria-label="수량올리기" class="css-18y6jr4 e1hx75jb0"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="css-uy4qy4 e1xnucib0">
+                <div class="css-1fttcpj e9qarb89">
+                    <div class="css-1066lcq e9qarb88">
+                        <p class="css-pp0jbi e9qarb87">합계</p>
+                        <div>
+                            <span class="css-6zcwtk e9qarb86">59,850</span>
+                            <span class="css-1h22y54 e9qarb85">원</span>
+                        </div>
+                    </div>
+                    <div class="css-3l45x1 e9qarb84">
+                        <span class="css-p0srp4 e9qarb83">적립</span>
+                        <span class="css-11tan3g e9qarb80">로그인 후, 회원할인가와 적립혜택 제공</span>
+                    </div>
+                </div>
+            </div>
+            <div class="css-1toes8l e1vslu8h0">
+                <button class="css-wg85j7 e4nu7ef3" type="button">
+                    <span class="css-ymwvow e4nu7ef1">취소</span>
+                </button>
+                <button class="css-1qirdbn e4nu7ef3" type="button">
+                    <span class="css-ymwvow e4nu7ef1">장바구니 담기</span>
+                </button>
+            </div>
+        </div>
     </div>
+    <div tabindex="0" data-test="sentinelEnd"></div>
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="/js/cart.js"></script>
     <script th:inline="javascript">
         const $read = $("a.read");
+        var code = [[${code}]];
+        if(code==null||code=='00'){
+            $(".css-126imjl").css("color","rgb(51, 51, 51)");
+            $(".css-126imjl").css("font-weight","600");
+        }else if(code=='03'){
+            $("#lowPrice").css("color","rgb(51, 51, 51)");
+            $("#lowPrice").css("font-weight","600");
+        }else if(code=='04'){
+            $("#highPrice").css("color","rgb(51, 51, 51)");
+            $("#highPrice").css("font-weight","600");
+        }
+        $(".css-1sn252j").on("click", function (e) {
+            $(".css-98q5jm").css('display','');
+            setPopup();
+            return false;
+        })
 
         $(".css-1xyd46f").on("click", function (e) {
-            e.preventDefault();
             var proId = $(this).children('.e1c07x4812').attr('id');
             location.href = "/product/detail?proId="+proId;
         })
 
+        function setPopup(){
+
+        }
+
+        $(".css-wg85j7").on("click", function () {
+            closePopup();
+        })
+        function closePopup(){
+            $(".css-98q5jm").css('display','none');
+        }
         $read.on("click", function(e){
             e.preventDefault();
             let code = $(this).attr("href");

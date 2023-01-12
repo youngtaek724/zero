@@ -32,4 +32,10 @@ public interface ProductMapper {
 
 // 카테고리 이름 가져오기
     public List<CategoryVO> selectCategory();
+
+// 상품 개수 가져오기
+    public int countProudct();
+
+// 상품 추가하기
+    public void insert(ProductDTO productDTO);
 }

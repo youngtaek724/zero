@@ -6,6 +6,7 @@
         <typeAlias type="com.example.app.domain.vo.MenuVO" alias="menuVO"/>
         <typeAlias type="com.example.app.domain.vo.SerialVO" alias="serialVO"/>
         <typeAlias type="com.example.app.domain.vo.UserVO" alias="userVO"/>
+        <typeAlias type="com.example.app.domain.vo.FileVO" alias="fileVO"/>
         <typeAlias type="com.example.app.domain.vo.CategoryVO" alias="categoryVO"/>
         <typeAlias type="com.example.app.domain.vo.ReplyVO" alias="replyVO"/>
         <typeAlias type="com.example.app.domain.vo.BoardVO" alias="boardVO"/>

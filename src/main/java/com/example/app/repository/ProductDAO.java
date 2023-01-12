@@ -39,4 +39,10 @@ public class ProductDAO {
 
     // 카테고리 가져오기
     public List<CategoryVO> showCategory(){return productMapper.selectCategory();}
+
+    // 상품 개수 가져오기
+    public int getCount(){return productMapper.countProudct();}
+
+    // 상품 등록하기
+    public void save(ProductDTO productDTO){productMapper.insert(productDTO);}
 }

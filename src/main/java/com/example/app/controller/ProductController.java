@@ -28,6 +28,8 @@ public class ProductController {
         if(code==null){ code = "00";}
         model.addAttribute("products", productService.showProductByCondition(code));
         model.addAttribute("categories", productService.showCategory());
+        model.addAttribute("code", code);
+        model.addAttribute("count",productService.getProduct());
     }
 
 
