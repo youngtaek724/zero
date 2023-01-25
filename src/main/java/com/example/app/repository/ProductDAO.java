@@ -44,5 +44,8 @@ public class ProductDAO {
     public int getCount(){return productMapper.countProudct();}
 
     // 상품 등록하기
-    public void save(ProductDTO productDTO){productMapper.insert(productDTO);}
+    public void save(ProductDTO productDTO){productMapper.insertProduct(productDTO);}
+
+    // 상품 삭제하기
+    public void delete(int proId){productMapper.deleteProduct(proId);}
 }

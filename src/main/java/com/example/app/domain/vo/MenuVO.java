@@ -10,4 +10,5 @@ import org.springframework.stereotype.Component;
 public class MenuVO {
     private String menuCode;
     private String menuName;
+    private String menuAddress;
 }

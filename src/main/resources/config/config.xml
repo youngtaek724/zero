@@ -3,6 +3,7 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.example.app.domain.vo.ProductVO" alias="productVO"/>
+        <typeAlias type="com.example.app.domain.vo.ProductDTO" alias="productDTO"/>
         <typeAlias type="com.example.app.domain.vo.MenuVO" alias="menuVO"/>
         <typeAlias type="com.example.app.domain.vo.SerialVO" alias="serialVO"/>
         <typeAlias type="com.example.app.domain.vo.UserVO" alias="userVO"/>

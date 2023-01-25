@@ -21,6 +21,7 @@ let replyService = (function(){
             }
         });
     }
+
     function getList(boardNumber, callback, error){
         $.ajax({
             url: "/reply/serial/" + boardNumber,

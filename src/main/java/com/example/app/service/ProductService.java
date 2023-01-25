@@ -21,6 +21,7 @@ public class ProductService {
     private final MenuDAO menuDAO;
     private final BoardDAO boardDAO;
     private final FileDAO fileDAO;
+    private ProductDTO productDTO;
 
     public List<ProductVO> showAll(){ return productDAO.showAll(); }
     // 상품 등록
@@ -83,4 +84,25 @@ public class ProductService {
 
     // 상품 가져오기
     public int getProduct(){return productDAO.getCount();}
+
+
+    // 상품 저장
+    public void saveProduct(ProductDTO productDTO){
+        if(productDTO.getProDiscountPer().equals("0")||productDTO.getProDiscountPer().equals("0%")){
+            productDTO.setProDiscountYN("N");
+            productDTO.setProDiscountPer("0");
+        }else{
+            productDTO.setProDiscountYN("Y");
+        }
+
+        String year = productDTO.getProInYear();
+        String month = productDTO.getProInMonth();
+        String day = productDTO.getProInDay();
+        String date = year+"-"+month+"-"+day;
+        productDTO.setProInDate(date);
+        productDAO.save(productDTO);
+    }
+
+    // 상품 삭제
+    public void delete(int proId){ productDAO.delete(proId);}
 }

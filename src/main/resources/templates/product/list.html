@@ -18,56 +18,7 @@
 
 <body>
 <!--header (나중에 제거)-->
-<button class="abc">버튼</button>
-<div id="__next">
-    <div class="NavBar_container">
-        <div class="MainBar_width">
-            <nav class="MainBar_flex">
-                <div class="MainBar_logoBox">
-                    <div>
-                        <!-- 좌측 상단 햄버거 이미지-->
-                        <button type="button" class="MainBar_hamberger">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Ficon-menu.png&amp;w=undefined&amp;q=75" alt="hamberger menu" style="width:17px;height:14px;object-fit:contain">
-
-                        </button>
-                        <a href="/" class="MainBar_logo">
-                            <!--로고 : 74*16 -->
-                            <i></i>
-                        </a>
-                    </div>
-                </div>
-                <ul class="menu_name_list">
-                    <th:block th:each="menu:${menus}">
-                        <li class="" th:object="${menu}">
-                            <a th:href="*{menuCode}" class="read" th:text="*{menuName}">홈</a>
-                        </li>
-                    </th:block>
-                </ul>
-                <aside class="Aside_box">
-                    <ul>
-                        <li>
-                            <button class="searchButton" type="button">
-                                <svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
-                                    <defs>
-                                        <path id="qt2dnsql4a" d="M15.727 17.273a.563.563 0 10.796-.796l-4.875-4.875-.19-.165a.563.563 0 00-.764.028 5.063 5.063 0 111.261-2.068.562.562 0 101.073.338 6.188 6.188 0 10-1.943 2.894l4.642 4.644z"></path>
-                                    </defs>
-                                    <g fill="none" fill-rule="evenodd">
-                                        <use fill="#333" fill-rule="nonzero" stroke="#333" stroke-width=".3" xlink:href="#qt2dnsql4a"></use>
-                                    </g>
-                                </svg>
-                            </button>
-                        </li>
-                        <li>
-                            <button class="signUpButton" type="button">회원가입/로그인</button>
-                        </li>
-                        <li class="leftDivision">
-                            <a class="dashboardButton" href="/admin/userList">관리자 페이지</a>
-                        </li>
-                    </ul>
-                </aside>
-            </nav>
-        </div>
-    </div>
+    <header th:replace="/main/header.html :: div"></header>
     <!--header 끝 (나중에 제거)-->
     <div class="css-emt8cc e12kjs5e0">
         <div id="container" class="css-1i60c0e e13nsthd2"><div class="css-1azakc e13967gz1">
@@ -254,17 +205,17 @@
                             <span class="css-1qd61ut e1ms5t9c1">
                                 <span class="css-1vdqr5b e1ms5t9c0">샛별배송</span>
                             </span>
-                                <span class="css-1dry2r1 e1c07x488" th:text="*{proName}">[새로미어묵] 바른공식 0% 김밥어묵 (2개입)</span>
-                                <p class="css-1wejlc3 e1c07x486" th:text="*{proSubTitle}">연육과 채소의 고소한 조화</p>
+                                <span class="css-1dry2r1 e1c07x488" th:text="*{proName}"></span>
+                                <p class="css-1wejlc3 e1c07x486" th:text="*{proSubTitle}"></p>
                                 <div class="e1c07x487 css-1t4zbyd ei5rudb2">
                                     <div>
-                                        <span th:if="*{proDiscountYN=='Y'}" th:text="*{proDiscountPer}+'%'" class="discount-rate css-19lkxd2 ei5rudb0">5%</span>
-                                        <span th:text="*{proOutput}+' 원'" class="sales-price css-18tpqqq ei5rudb1">6,840
+                                        <span th:if="*{proDiscountYN=='Y'}" th:text="*{proDiscountPer}+'%'" class="discount-rate css-19lkxd2 ei5rudb0"></span>
+                                        <span th:text="*{proOutput}+' 원'" class="sales-price css-18tpqqq ei5rudb1">
                                         <span class="won">원</span>
                                     </span>
                                     </div>
                                     <div>
-                                    <span th:if="*{proDiscountYN=='Y'}" th:text="*{proOutput}+' 원'" class="dimmed-price css-18tpqqq ei5rudb1">7,200
+                                    <span th:if="*{proDiscountYN=='Y'}" th:text="*{proOutput}+' 원'" class="dimmed-price css-18tpqqq ei5rudb1">
                                         <span class="won">원</span>
                                     </span>
                                     </div>
@@ -429,6 +380,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="/js/cart.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script th:inline="javascript">
         const $read = $("a.read");
         var code = [[${code}]];
@@ -463,29 +415,6 @@
         function closePopup(){
             $(".css-98q5jm").css('display','none');
         }
-        $read.on("click", function(e){
-            e.preventDefault();
-            let code = $(this).attr("href");
-            let page = "";
-            switch (code) {
-                case '000' :
-                    page = "/main/home"
-                    break;
-                case '001' :
-                    code='001'
-                    page = "/main/helpDesk"
-                    break;
-                case '002' :
-                    code = '002'
-                    page = "/mypage/myorder"
-                    break;
-                case '005' :
-                    code = '005'
-                    page = "/main/cart"
-                    break;
-            }
-            location.href = page;
-        });
     </script>
 </body>
 </html>

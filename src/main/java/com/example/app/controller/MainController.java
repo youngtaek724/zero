@@ -34,6 +34,7 @@ public class MainController {
         Object userNumber = session.getAttribute("userNumber");
         model.addAttribute("userNumber", userNumber);
         model.addAttribute("menus", productService.showMenu());
+        System.out.println(productService.showMenu());
         if(userNumber!=null){
             model.addAttribute("products",cartService.showAll((int)userNumber));
                 if((addressService.findBase((int)userNumber))!=null){
@@ -52,6 +53,11 @@ public class MainController {
 
     @GetMapping("/result")
     public void addResult(){
+
+    }
+
+    @GetMapping("/test")
+    public  void test(){
 
     }
 

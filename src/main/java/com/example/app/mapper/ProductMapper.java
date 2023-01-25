@@ -37,5 +37,8 @@ public interface ProductMapper {
     public int countProudct();
 
 // 상품 추가하기
-    public void insert(ProductDTO productDTO);
+    public void insertProduct(ProductDTO productDTO);
+
+// 상품 삭제하기
+    public void deleteProduct(int proId);
 }
