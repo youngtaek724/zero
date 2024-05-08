@@ -23,7 +23,7 @@ public class CartService {
     public List<CartDTO> showCategory(int userNumber){return cartDAO.selectCategory(userNumber);}
 
     // 장바구니 검사
-    public int checkCart(int proId){return cartDAO.checkCart(proId);}
+    public int checkCart(CartVO cartVO){return cartDAO.checkCart(cartVO);}
 
     // 장바구니 삭제
     public void deleteCart(CartVO cartVO){cartDAO.deleteCart(cartVO);}

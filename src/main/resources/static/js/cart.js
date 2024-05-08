@@ -3,6 +3,7 @@
 * */
 
 let cartService = (function(){
+    /*장바구니 추가 JS*/
     function add(cart, callback, error){
         $.ajax({
             url: "/cart/add",

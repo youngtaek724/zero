@@ -66,10 +66,11 @@
                             </button>
                         </li>
 
-                        <li th:if="${userNumber==null}">
+                        <li th:if="${loginUser==null}">
                             <button class="signUpButton" type="button">회원가입/로그인</button>
                         </li>
-                        <li th:if="${userNumber!=null}">
+                        <li th:if="${loginUser!=null}">
+                            <button class="signUpButton" type="button" th:text="${loginUser.userId}"></button>
                             <button class="signUpButton" type="button" id = "logout">로그아웃</button>
                         </li>
                         <li class="leftDivision">
@@ -86,81 +87,12 @@
 <script src="/js/jquery.min.js"></script>
 <script th:inline="javascript">
 
-    //사용할 배너
-
-    var $banner = $(".banner").find("ul");
-    var $bannerWidth = $banner.children().outerWidth();
-    var $bannerHeight = $banner.children().outerHeight();
-    var $bannerLength = $banner.children().length;
-    const detail = $("a.detail");
-
-    var rollingId;
-    let menuCode = [[${menuCode}]];
-
-    detail.on("click", function(e){
-        e.preventDefault();
-        location.href = "/product/detail" + "?proId=" + $(this).attr("href");
-    });
     $(".signUpButton").on("click", function () {
-        location.href = "/member/login";
+        alert('!')
     })
 
     $("#logout").on("click", function () {
         location.href = "/member/logout";
     })
-
-    rollingId = setInterval(function () {
-        rollingStart();
-    }, 10000);
-
-    function rollingStart() {
-        $banner.css("width", $bannerWidth * $bannerLength + "px");
-        $banner.css("height", $bannerHeight + "px");
-        $banner.animate({ left: -$bannerWidth + "px" }, 3000, function () {
-            $(this).append("<li>" + $(this).find("li:first").html() + "</li>");
-            $(this).find("li:first").remove();
-            $(this).css("left", 0);
-        });
-    }
-    const $read = $("a.read");
-    $read.on("click", function(e){
-        e.preventDefault();
-        let code = $(this).attr("href");
-        let page = "";
-        switch (code) {
-            case '000' :
-                page = "/main/home"
-                break;
-            case '001' :
-                code='001'
-                page = "/product/list"
-                break;
-            case '002' :
-                code = '002'
-                page = "/mypage/myorder"
-                break;
-            case '003' :
-                code = '003'
-                page = "/product/list"
-                break;
-            case '005' :
-                code = '005'
-                page = "/main/cart"
-                break;
-        }
-        location.href = page;
-    });
-
-    $("a.write").on("click", function(e){
-        e.preventDefault();
-        location.href = "/board/write";
-    });
-
-    $pages.on("click", function(e){
-        e.preventDefault();
-        $(document.pageForm.page).val($(this).attr("href"));
-        document.pageForm.submit();
-    });
-
 </script>
 </html>

@@ -26,7 +26,8 @@
                         <div class="css-46b038 e18ap6t76">
                             <div class="css-1accgqb e1uzxhvi6">
                                 <div class="css-176lya2 e1uzxhvi3">
-                                    <input th:field = "*{userId}" data-testid="input-box" name="id" placeholder="아이디를 입력해주세요" type="text" class="css-1bkd15f e1uzxhvi2">
+                                    <input th:if="${param.error}" data-testid="input-box" name="id" placeholder="등록되지 않은 회원입니다" type="text" class="css-1bkd15f e1uzxhvi2" readonly>
+                                    <input th:unless="${param.error}" th:field = "*{userId}" data-testid="input-box" name="id" placeholder="아이디를 입력해주세요" type="text" class="css-1bkd15f e1uzxhvi2">
                                 </div>
                             </div>
                             <div class="css-1accgqb e1uzxhvi6">

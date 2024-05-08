@@ -17,7 +17,10 @@ public class MemberDAO {
     private final MemberMapper memberMapper;
 
 
-    public int login(MemberVO memberVO){
+    public MemberVO login(MemberVO memberVO){
         return memberMapper.login(memberVO);
     }
+
+    public void updateLastLogin(int userNumber) { memberMapper.updateLastLogin(userNumber);}
+
 }

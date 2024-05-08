@@ -1,5 +1,6 @@
 package com.example.app.controller;
 
+import com.example.app.domain.vo.MemberVO;
 import com.example.app.service.AddressService;
 import com.example.app.service.CartService;
 import com.example.app.service.ProductService;
@@ -23,22 +24,25 @@ public class MainController {
 
     @GetMapping("/home")
     public void home(Model model){
+        MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+        model.addAttribute("loginUser", loginUser);
         model.addAttribute("products", productService.showAll());
         model.addAttribute("menus", productService.showMenu());
-        if(session.getAttribute("userNumber")!=null) {
-            model.addAttribute("userNumber", session.getAttribute("userNumber"));
-        }
     }
     @GetMapping("/cart")
-    public void myCart(Model model){
-        Object userNumber = session.getAttribute("userNumber");
-        model.addAttribute("userNumber", userNumber);
+    public void myCart(Model model, HttpSession session){
+        MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+
         model.addAttribute("menus", productService.showMenu());
+        model.addAttribute("loginMemberVO", loginUser);
+        model.addAttribute("loginUser", loginUser);
         System.out.println(productService.showMenu());
-        if(userNumber!=null){
-            model.addAttribute("products",cartService.showAll((int)userNumber));
+        if(loginUser!=null){
+            int userNumber = loginUser.getUserNumber();
+            model.addAttribute("userNumber", userNumber);
+            model.addAttribute("products",cartService.showAll(userNumber));
                 if((addressService.findBase((int)userNumber))!=null){
-                    model.addAttribute("address", addressService.findBase((int)userNumber));
+                    model.addAttribute("address", addressService.findBase(userNumber));
                 }
         }
     }

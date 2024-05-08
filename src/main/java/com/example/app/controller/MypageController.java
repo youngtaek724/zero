@@ -32,16 +32,21 @@ public class MypageController {
     }
     @PostMapping("login")
     public RedirectView login(Model model, MemberVO memberVO, HttpServletRequest request, RedirectAttributes redirectAttributes){
-
-           session = request.getSession();
-           try {
-               int userNumber = memberService.login(memberVO);
-               session.setAttribute("userNumber", userNumber);
-           }catch (Exception e){
-               e.printStackTrace();
-               redirectAttributes.addFlashAttribute("result",-1);
-               return  new RedirectView("/mypage/login");
-           }
+        try {
+            MemberVO loginMemberVO = memberService.login(memberVO);
+            if(loginMemberVO != null){
+                session.setAttribute("loginUser", memberVO);
+                model.addAttribute("loginMemberVO", loginMemberVO);
+                int userNumber = loginMemberVO.getUserNumber();
+            }else{
+                model.addAttribute("error", "Invalid credentials. Please try again.");
+                return new RedirectView("/mypage/login");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("result",-1);
+            return  new RedirectView("/mypage/login");
+        }
            return new RedirectView("/mypage/update");
        }
 
@@ -62,14 +67,17 @@ public class MypageController {
 
     @GetMapping("myaddress")
     public void myaddress(Model model,HttpServletRequest request){
-        session=request.getSession();
-        model.addAttribute("menus", productService.showMenu());
-        if(session.getAttribute("userNumber")!=null) {
-            int userNumber = (int) session.getAttribute("userNumber");
+        MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+        int userNumber = loginUser==null?-1:loginUser.getUserNumber();
+
+
+        if(userNumber!=-1) {
             model.addAttribute("userNumber", userNumber);
             model.addAttribute("address", addressService.showAll(userNumber));
         }
+        model.addAttribute("menus", productService.showMenu());
     }
+
     @GetMapping("myorder")
     public void myorder(Model model, HttpServletRequest request){
         session=request.getSession();

@@ -11,7 +11,7 @@
 
     <!-- 장바구니 검사 -->
     <select id="checkCart" resultType="_int">
-        SELECT COUNT(PRO_ID) FROM TBL_CART WHERE PRO_ID = #{proId}
+        SELECT COUNT(PRO_ID) FROM TBL_CART WHERE PRO_ID = #{proId} and USER_NUMBER = #{userNumber}
     </select>
 
     <!-- 장바구니 삭제 -->

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.Instant;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,6 +27,7 @@ public class MemberController {
     private final AddressService addressService;
     private final ProductService productService;
     private final MemberService memberService;
+
     HttpSession session;
     @GetMapping("login")
     public void login(Model model){
@@ -33,27 +35,44 @@ public class MemberController {
         model.addAttribute("member", new MemberVO());
     }
     @PostMapping("login")
-    public RedirectView login(MemberVO memberVO,  HttpServletRequest request){
-        session = request.getSession();
+    public RedirectView login(MemberVO memberVO,  HttpServletRequest request, Model model, HttpSession session){
+        Instant instant = Instant.now();
 
         try {
-            int userNumber = memberService.login(memberVO);
-            session.setAttribute("userNumber", userNumber);
+            MemberVO loginMemberVO = memberService.login(memberVO);
+            if(loginMemberVO != null){
+                session.setAttribute("loginUser", loginMemberVO);
+                model.addAttribute("loginMemberVO", loginMemberVO);
+                int userNumber = loginMemberVO.getUserNumber();
+                memberService.updateLastLogin(userNumber);
+                System.out.println("*********************************************************************");
+                System.out.println("HELLO "+loginMemberVO.getUserName()+"!!!!!!!!!!!");
+                System.out.println("ID : "+loginMemberVO.getUserId());
+                System.out.println("NUMBER : "+loginMemberVO.getUserNumber());
+                System.out.println("STATE : "+loginMemberVO.getUserStatus());
+                System.out.println("LOGIN TIME : "+instant);
+                System.out.println("*********************************************************************");
+            }else{
+                model.addAttribute("error", "Invalid credentials. Please try again.");
+                return new RedirectView("/member/login?error=true");
+            }
+
         }catch (Exception e){
             e.printStackTrace();
             return  new RedirectView("/member/login");
         }
+
         return new RedirectView("/main/home");
     }
 
-    @GetMapping("logout")
-    public RedirectView logout(){
-        if(session.getAttribute("userNumber")!=null) {
-            session.removeAttribute("userNumber");
+    @GetMapping("/logout")
+    public RedirectView logout(HttpSession session) {
+        if (session.getAttribute("loginUser") != null) {
+            session.removeAttribute("loginUser");
         }
         return new RedirectView("/main/home");
-
     }
+
 }
 
 

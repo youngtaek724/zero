@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -73,8 +74,14 @@ public class ProductService {
                 break;
             default:condition="PRO_INDATE DESC";
         }
-
-        return productDAO.showProductByCondition(condition);
+        // 할인 시 할인값을 계산하는 역할
+        List<ProductVO> list = productDAO.showProductByCondition(condition);
+        for(ProductVO productVO : list){
+            int price = productVO.getProOutput();
+            int discountPrice = productVO.getProDiscountYN().equals("Y")?(price/100) * (100 - Integer.parseInt(productVO.getProDiscountPer())):price;
+            productVO.setProDiscountPrice(discountPrice);
+        }
+        return list;
     }
 
     // 카테고리 가져오기

@@ -13,8 +13,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberDAO memberDAO;
-    public int login(MemberVO memberVO){
+    public MemberVO login(MemberVO memberVO){
         return memberDAO.login(memberVO);
     }
+
+    public void updateLastLogin(int userNumber) { memberDAO.updateLastLogin(userNumber);}
 
 }

@@ -170,8 +170,6 @@
         const $read = $("a.read");
         let $userNumber = [[${userNumber}]];
         let count = parseInt($(".count").attr("value"));
-        let countA = $(".countA");
-        let cnt;
         let plus = $(".css-18y6jr4");
         var minus = $(".countA");
         let total = 0;
@@ -260,7 +258,7 @@
                 $(this).attr("disabled", "disabled");
             }
         })
-
+        // 장바구니 삭제
         $(".e5h3i930").on("click", function (e) {
             var result = confirm("삭제하시겠습니까?");
             if(result){

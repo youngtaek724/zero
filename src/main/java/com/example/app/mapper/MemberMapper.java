@@ -9,5 +9,7 @@ public interface MemberMapper {
 
     public void join(MemberVO memberVO);
 
-    public int login(MemberVO memberVO);
+    public MemberVO login(MemberVO memberVO);
+
+    public void updateLastLogin(int userNumber);
 }

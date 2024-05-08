@@ -8,6 +8,7 @@ import com.example.app.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,16 +20,18 @@ public class CartController {
     private final CartService cartService;
     private final BoardService boardService;
     private final AddressService addressService;
+    private final HttpSession session;
     // 장바구니 추가
     @PostMapping("/add")
     public String add(@RequestBody CartVO cartVO){
+        System.out.println("cartController");
         cartService.insertCart(cartVO);
         return "insert success";
     }
     // 장바구니 검사
     @PostMapping("/check")
-    public int check(@RequestBody int proId){
-        return cartService.checkCart(proId);
+    public int check(@RequestBody CartVO cartVO){
+        return cartService.checkCart(cartVO);
     }
 
     // 장바구니 삭제
@@ -40,6 +43,8 @@ public class CartController {
     // 배송지 추가
     @PostMapping("/address")
     public void address(@RequestBody AddressVO addressVO){
+        int userNumber = ((MemberVO) session.getAttribute("loginUser")).getUserNumber();
+        addressVO.setUserNumber(userNumber);
         addressService.insertAddress(addressVO);
     }
 

@@ -24,6 +24,7 @@ public class ProductVO {
     private int proStock;
     private String proDiscountPer;
     private String proDiscountYN;
+    private int proDiscountPrice;
 
     public String getProInDate() {
         return proInDate;

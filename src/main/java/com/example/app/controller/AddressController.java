@@ -1,6 +1,7 @@
 package com.example.app.controller;
 
 import com.example.app.domain.vo.AddressVO;
+import com.example.app.domain.vo.MemberVO;
 import com.example.app.service.AddressService;
 import com.example.app.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import org.thymeleaf.model.IModel;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,18 +24,19 @@ public class AddressController {
     private final HttpSession session;
     @GetMapping("/list")
     public void list(Model model){
-        model.addAttribute("userNumber", session.getAttribute("userNumber"));
         model.addAttribute("address", new AddressVO());
-        if(session.getAttribute("userNumber")!=null) {
-            model.addAttribute("addresses", addressService.showAll((int) session.getAttribute("userNumber")));
+        MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+        if(loginUser!=null) {
+            model.addAttribute("addresses", addressService.showAll(loginUser.getUserNumber()));
         }
     };
 
     @PostMapping("/update")
     public void update(AddressVO addressVO, Model model){
         model.addAttribute("info", addressVO);
-        if(session.getAttribute("userNumber")!=null) {
-            model.addAttribute("userNumber", session.getAttribute("userNumber"));
+        MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+        if(loginUser !=null) {
+            model.addAttribute("userNumber", loginUser.getUserNumber());
         }
     }
 

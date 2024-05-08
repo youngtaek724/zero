@@ -17,9 +17,18 @@
     </insert>
 
     <!-- 로그인 -->
-    <select id="login" resultType="_int">
-        SELECT USER_NUMBER FROM TBL_MEMBER WHERE USER_ID = #{userId} AND USER_PASSWORD = #{userPassword}
+    <select id="login" resultType="memberVO">
+        SELECT USER_NUMBER, USER_TYPE, USER_STATUS, USER_NAME, USER_ID, USER_PASSWORD, USER_GENDER, USER_EMAIL, USER_DATE FROM TBL_MEMBER WHERE USER_ID = #{userId} AND USER_PASSWORD = #{userPassword}
     </select>
+    <!-- 로그인 temp -->
+    <select id="loginTemp" resultType="_int">
+        SELECT USER_NUMBER from TBL_MEMBER WHERE USER_ID = #{userId} AND USER_PASSWORD = #{userPassword}
+    </select>
+
+    <!-- 마지막 로그인 -->
+    <update id="updateLastLogin" parameterType="int">
+        UPDATE TBL_MEMBER SET LAST_LOGIN = SYSDATE WHERE USER_NUMBER = #{userNumber}
+    </update>
 </mapper>
 
 

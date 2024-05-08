@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 @Data
 @NoArgsConstructor
 public class CategoryVO {
-
     private int categoryId;
     private String categoryName;
-
-
 }

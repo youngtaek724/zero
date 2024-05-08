@@ -22,7 +22,7 @@ public interface CartMapper {
     public List<CartDTO> selectCategory(int userNumber);
 
     // 장바구니 검사
-    public int checkCart(int proId);
+    public int checkCart(CartVO cartVO);
     // 장바구니 삭제
     public void deleteCart(CartVO cartVO);
 }

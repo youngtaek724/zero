@@ -16,8 +16,7 @@ public class AddressService {
 
     // 배송지 추가
     public void insertAddress(AddressVO addressVO){
-        // 나중에 세션에서 아이디 값 가져오기
-        if(addressVO.getBaseAddress().equals("Y")){addressDAO.update(2);}
+        if(addressVO.getBaseAddress().equals("Y")){addressDAO.update(addressVO.getUserNumber());}
         addressDAO.insertAddress(addressVO);
     }
 

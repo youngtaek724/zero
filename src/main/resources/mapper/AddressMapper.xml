@@ -6,7 +6,7 @@
     <insert id="insertAddress">
     INSERT INTO TBL_MEMBER_ADDRESS
     (USER_NUMBER, MEMBER_ADDRESS1, MEMBER_ADDRESS2, MEMBER_ADDRESS3, BASE_ADDRESS)
-    VALUES(2, #{memberAddress1},#{memberAddress2} , #{memberAddress3}, #{baseAddress})
+    VALUES(#{userNumber}, #{memberAddress1},#{memberAddress2} , #{memberAddress3}, #{baseAddress})
     </insert>
 
     <!-- 주소 조회-->

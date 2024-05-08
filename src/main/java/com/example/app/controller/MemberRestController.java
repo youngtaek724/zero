@@ -16,7 +16,7 @@ public class MemberRestController {
     private final MemberService memberService;
 
     @PostMapping("/login")
-    public int login(@RequestBody MemberVO memberVO){
+    public MemberVO login(@RequestBody MemberVO memberVO){
         return memberService.login(memberVO);
     }
 }

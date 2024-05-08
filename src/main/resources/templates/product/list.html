@@ -18,8 +18,8 @@
 
 <body>
 <!--header (나중에 제거)-->
-    <header th:replace="/main/header.html :: div"></header>
-    <!--header 끝 (나중에 제거)-->
+<header th:replace="/main/header.html :: div"></header>
+<!--header 끝 (나중에 제거)-->
     <div class="css-emt8cc e12kjs5e0">
         <div id="container" class="css-1i60c0e e13nsthd2"><div class="css-1azakc e13967gz1">
             <a href="https://www.kurly.com/categories/490">
@@ -205,12 +205,12 @@
                             <span class="css-1qd61ut e1ms5t9c1">
                                 <span class="css-1vdqr5b e1ms5t9c0">샛별배송</span>
                             </span>
-                                <span class="css-1dry2r1 e1c07x488" th:text="*{proName}"></span>
+                                <span class="css-1dry2r1 e1c07x488" th:text="*{proName}" th:id="*{proName}"></span>
                                 <p class="css-1wejlc3 e1c07x486" th:text="*{proSubTitle}"></p>
                                 <div class="e1c07x487 css-1t4zbyd ei5rudb2">
                                     <div>
                                         <span th:if="*{proDiscountYN=='Y'}" th:text="*{proDiscountPer}+'%'" class="discount-rate css-19lkxd2 ei5rudb0"></span>
-                                        <span th:text="*{proOutput}+' 원'" class="sales-price css-18tpqqq ei5rudb1">
+                                        <span th:text="*{ProDiscountPrice}+' 원'" class="sales-price css-18tpqqq ei5rudb1" th:value="*{ProDiscountPrice}">
                                         <span class="won">원</span>
                                     </span>
                                     </div>
@@ -223,6 +223,7 @@
                             </div>
                         </a>
                         </th:block>
+                        <!--
                         <a href="/goods/5048224" class="css-1xyd46f e1c07x4814">
                             <div class="css-0 e1c07x4812">
                                 <div class="e1c07x4813 css-1mlybuj e3um3060">
@@ -234,10 +235,12 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="css-c1cgl e1c07x489">
                             <span class="css-1qd61ut e1ms5t9c1">
                                 <span class="css-1vdqr5b e1ms5t9c0">샛별배송</span>
                             </span>
+
                                 <span class="css-1dry2r1 e1c07x488">[농부의 꽃] 노란색 튤립 5송이</span>
                                 <p class="css-1wejlc3 e1c07x486">생기 가득한 금빛 물결 </p>
                                 <div class="e1c07x487 css-1t4zbyd ei5rudb2">
@@ -296,6 +299,7 @@
                                 </div>
                             </div>
                         </a>
+                        -->
                     </div>
                     <div class="css-rdz8z7 e82lnfz1">
                         <a class="css-1d20dg7 e82lnfz0">
@@ -335,16 +339,16 @@
             <div class="css-155nkqq e1xnucib1">
                 <div class="css-1sjnt6v e1b27mtb8">
                     <div class="css-1066lcq e1b27mtb7">
-                        <span class="css-rsi182 e1b27mtb6">[피쿠알리아] 퍼스트 데이 하베스트 리미티드 에디션 피쿠알 엑스트라버진 500ml</span>
+                        <span class="css-rsi182 e1b27mtb6">상품명</span>
                     </div>
                     <div class="css-1sr55yd e1b27mtb4">
                         <div class="css-0 e1b27mtb3">
-                            <span class="css-1jjhy4o e1b27mtb2">59,850원</span>
-                            <span class="css-16pwusi e1b27mtb1">99,000원</span>
+                            <span class="css-1jjhy4o e1b27mtb2">할인가</span>
+                            <span class="css-16pwusi e1b27mtb1">판매가</span>
                         </div>
                         <div class="e1b27mtb0 css-2v1lnp e1cqr3m40">
-                            <button type="button" aria-label="수량내리기" disabled="" class="css-1e90glc e1hx75jb0"></button>
-                            <div class="count css-6m57y0 e1cqr3m41">1</div>
+                            <button type="button" aria-label="수량내리기" disabled="" class="css-1e90glc e1hx75jb0 countA"></button>
+                            <div class="count css-6m57y0 e1cqr3m41" value = 1>1</div>
                             <button type="button" aria-label="수량올리기" class="css-18y6jr4 e1hx75jb0"></button>
                         </div>
                     </div>
@@ -382,6 +386,28 @@
     <script src="/js/cart.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script th:inline="javascript">
+        let $userNumber = [[${userNumber}]];
+        let proId ;
+        let proName ;
+        let proSubTitle ;
+        let proDiscountPrice ;
+        let proOutPut ;
+        let proDisPrice;
+        let count = parseInt($(".count").attr("value"));
+        let cnt = $(".count");
+        let plus = $(".css-18y6jr4");
+        let minus = $(".css-1e90glc");
+        let countA = $(".countA");
+
+
+        $(".signUpButton").on("click", function () {
+            location.href = "/member/login";
+        })
+
+        $("#logout").on("click", function () {
+            location.href = "/member/logout";
+        })
+
         const $read = $("a.read");
         var code = [[${code}]];
         if(code==null||code=='00'){
@@ -394,11 +420,68 @@
             $("#highPrice").css("color","rgb(51, 51, 51)");
             $("#highPrice").css("font-weight","600");
         }
+        <!-- 장바구니 아이콘 -->
         $(".css-1sn252j").on("click", function (e) {
-            $(".css-98q5jm").css('display','');
-            setPopup();
+            if($userNumber==-1){
+                alert("로그인 후 이용하세요");
+                return false;
+            }else{
+                <!-- 팝업 내용 세팅-->
+                popupTextSetting($(this));
+                $(".css-98q5jm").css('display','');
+                setPopup();
+                return false;
+            }
             return false;
         })
+        function popupTextSetting(call){
+            proId = $(call).closest('.css-0').attr('id');
+            proName = $(call).closest('.css-1xyd46f').find('.css-1dry2r1').text();
+            proSubTitle = $(call).closest('.css-1xyd46f').find('.css-1wejlc3').text();
+            proDiscountPrice = $(call).closest('.css-1xyd46f').find('.sales-price').text();
+            proDisPrice = $(call).closest('.css-1xyd46f').find('.sales-price').attr('value');
+            proOutPut = $(call).closest('.css-1xyd46f').find('.dimmed-price').text();
+
+
+            $('.css-rsi182').text(proName);
+            $('.css-1jjhy4o').text(proDiscountPrice);
+            $('.css-6zcwtk').text(proDiscountPrice);
+            $('.css-16pwusi').text(proOutPut);
+            $('.count').text(count);
+        }
+
+
+        plus.on("click", function () {
+            count += 1;
+            cnt.text(count);
+        })
+
+        minus.on("click", function () {
+            count -= 1;
+            cnt.text(count);
+        })
+
+        $(function () {
+            $('li > a').click(function (){
+                $('html, body').animate({scrollTop: $(this.hash).offset.top}, 300);
+            });
+        });
+
+
+        $(".e1hx75jb0").on("click", function () {
+            if(count>1){
+                countA.removeClass("css-1e90glc");
+                countA.addClass("css-8azp8");
+                countA.removeAttr("disabled");
+            }else if(count==1){
+                countA.removeClass("css-8azp8");
+                countA.addClass("css-1e90glc");
+                countA.attr("disabled", "disabled");
+            }
+
+            $(".css-6zcwtk").text(count*parseInt(proDiscountPrice));
+        })
+
 
         $(".css-1xyd46f").on("click", function (e) {
             var proId = $(this).children('.e1c07x4812').attr('id');
@@ -414,7 +497,35 @@
         })
         function closePopup(){
             $(".css-98q5jm").css('display','none');
+            count = 1;
         }
+
+        //장바구니 추가
+        $(".css-1qirdbn").on("click", function (e){
+            e.preventDefault();
+            cartService.check({
+                proId : proId,
+                userNumber : $userNumber
+            }, function (result){
+                if(result!=0){
+                    alert("이미 장바구니에 추가된 상품입니다");
+                    return;
+                }else{
+                    cartService.add({
+                        userNumber: $userNumber,
+                        proId:proId,
+                        proCount: count,
+                        proPrice: proDisPrice
+                    }, function (){
+                        alert("장바구니에 추가되었습니다");
+                        closePopup();
+                    });
+                }
+            });
+        });
+
+
+
     </script>
 </body>
 </html>

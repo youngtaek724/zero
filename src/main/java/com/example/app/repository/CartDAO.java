@@ -23,7 +23,7 @@ public class CartDAO {
     public List<CartDTO> selectCategory(int userNumber){return  cartMapper.selectCategory(userNumber);}
 
     // 장바구니 검사
-    public int checkCart(int proId){return  cartMapper.checkCart(proId);}
+    public int checkCart(CartVO cartVO){return  cartMapper.checkCart(cartVO);}
     // 장바구니 삭제
     public void deleteCart(CartVO cartVO){cartMapper.deleteCart(cartVO);}
 }

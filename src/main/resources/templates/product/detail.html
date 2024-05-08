@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kor" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
@@ -18,56 +18,8 @@
 
 <body>
 <!--header (나중에 제거)-->
-<button class="abc">버튼</button>
-<div id="__next">
-    <div class="NavBar_container">
-        <div class="MainBar_width">
-            <nav class="MainBar_flex">
-                <div class="MainBar_logoBox">
-                    <div>
-                        <!-- 좌측 상단 햄버거 이미지-->
-                        <button type="button" class="MainBar_hamberger">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Ficon-menu.png&amp;w=undefined&amp;q=75" alt="hamberger menu" style="width:17px;height:14px;object-fit:contain">
-                        </button>
-                        <a href="/" class="MainBar_logo">
-                            <!--로고 : 74*16 -->
-                            <i></i>
-                        </a>
-                    </div>
-                </div>
-                <ul class="menu_name_list">
-                    <th:block th:each="menu:${menus}">
-                        <li class="" th:object="${menu}">
-                            <a th:href="*{menuCode}" class="read" th:text="*{menuName}">홈</a>
-                        </li>
-                    </th:block>
-                </ul>
-                <aside class="Aside_box">
-                    <ul>
-                        <li>
-                            <button class="searchButton" type="button">
-                                <svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
-                                    <defs>
-                                        <path id="qt2dnsql4a" d="M15.727 17.273a.563.563 0 10.796-.796l-4.875-4.875-.19-.165a.563.563 0 00-.764.028 5.063 5.063 0 111.261-2.068.562.562 0 101.073.338 6.188 6.188 0 10-1.943 2.894l4.642 4.644z"></path>
-                                    </defs>
-                                    <g fill="none" fill-rule="evenodd">
-                                        <use fill="#333" fill-rule="nonzero" stroke="#333" stroke-width=".3" xlink:href="#qt2dnsql4a"></use>
-                                    </g>
-                                </svg>
-                            </button>
-                        </li>
-                        <li>
-                            <button class="signUpButton" type="button">회원가입/로그인</button>
-                        </li>
-                        <li class="leftDivision">
-                            <a class="dashboardButton" href="/admin/userList">관리자 페이지</a>
-                        </li>
-                    </ul>
-                </aside>
-            </nav>
-        </div>
-    </div>
-    <!--header 끝 (나중에 제거)-->
+<header th:replace="/main/header.html :: div"></header>
+<!--header 끝 (나중에 제거)-->
     <br><br><br>
     <!-- 문의하기 모달창-->
     <div role="presentation" class="MuiDialog-root css-b5lr18" style="position: fixed; z-index: 1300; inset: 0px; display: none" id = "modal">
@@ -529,13 +481,15 @@
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script src="/js/cart.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script th:inline="javascript">
         let price = [[${product.proOutput}]];
         let proId =  [[${product.proId}]];
+        let userNumber = [[${userNumber}]];
         let discountYN = [[${product.proDiscountYN}]];
         let count = parseInt($(".count").attr("value"));
         let plus = $(".css-18y6jr4");
@@ -552,6 +506,13 @@
 
 
         getList();
+        $(".signUpButton").on("click", function () {
+            location.href = "/member/login";
+        })
+
+        $("#logout").on("click", function () {
+            location.href = "/member/logout";
+        })
 
         function getList(){
             cartService.getInquiry(proId, showList);
@@ -651,6 +612,10 @@
 
 
         document.getElementById("inquiry_btn").onclick = function() {
+            if(userNumber==-1){
+                 alert("로그인 후 이용해주세요");
+                 return;
+            }
             document.getElementById("modal").style.display="block";
             document.getElementById("over").style.overflow="hidden";
         }
@@ -716,50 +681,34 @@
             $(".css-f4f4h7").attr("disabled", false);
         })
 
-
+        // 장바구니 등록
         cart.on("click", function (e) {
-            e.preventDefault();
-            cartService.check(proId, function (result) {
-                if(result!=0){
-                    alert("이미 장바구니에 추가된 상품입니다");
-                    return;
-                }else{
-                    cartService.add({
-                        userNumber: 2,
-                        proId: proId,
-                        proCount: count,
-                        proPrice : price
-                    }, function(){
-                        alert("장바구니에 추가되었습니다");
-                    });
-                }
-            });
+            if(userNumber==-1){
+                alert("로그인을 진행해주세요");
+                return;
+            }else{
+                e.preventDefault();
+                cartService.check({
+                    proId : proId,
+                    userNumber : userNumber
+                }, function (result) {
+                    if(result!=0){
+                        alert("이미 장바구니에 추가된 상품입니다");
+                        return;
+                    }else{
+                        cartService.add({
+                            userNumber: userNumber,
+                            proId: proId,
+                            proCount: count,
+                            proPrice : price
+                        }, function(){
+                            alert("장바구니에 추가되었습니다");
+                        });
+                    }
+                });
+            }
         });
 
-        const $read = $("a.read");
-        $read.on("click", function(e){
-            e.preventDefault();
-            let code = $(this).attr("href");
-            let page = "";
-            switch (code) {
-                case '000' :
-                    page = "/main/home"
-                    break;
-                case '001' :
-                    code='001'
-                    page = "/main/helpDesk"
-                    break;
-                case '002' :
-                    code = '002'
-                    page = "/mypage/login"
-                    break;
-                case '005' :
-                    code = '005'
-                    page = "/main/cart"
-                    break;
-            }
-            location.href = page;
-        });
 
         $(".css-1ikskzr").on("click", function () {
             changeImg();
@@ -783,7 +732,7 @@
 
             e.preventDefault();
             cartService.addInquiry({
-                inqWriter: 2,
+                inqWriter: userNumber,
                 inqProductId: proId,
                 inqSecreatYN: result,
                 inqTitle : inquiryTitle,
