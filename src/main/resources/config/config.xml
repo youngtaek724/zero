@@ -17,6 +17,11 @@
         <typeAlias type="com.example.app.domain.vo.InquiryVO" alias="inquiryVO"/>
         <typeAlias type="com.example.app.domain.vo.AddressVO" alias="addressVO"/>
         <typeAlias type="com.example.app.domain.vo.MemberVO" alias="memberVO"/>
+        <typeAlias type="com.example.app.domain.vo.EaiRestDTO" alias="eaiRestDTO"/>
+        <typeAlias type="com.example.app.domain.vo.EaiRestResponseDTO" alias="eaiRestRequestDTO"/>
+        <typeAlias type="com.example.app.domain.vo.eaiRest.UserTestDTO" alias="userTestDTO"/>
+        <typeAlias type="com.example.app.domain.vo.eaiRest.CommonHeader" alias="commonHeaderDTO"/>
+        <typeAlias type="com.example.app.domain.vo.eaiRest.InterfaceHistVO" alias="interfaceHistVO"/>
         <!--
         <typeAlias type="com.example.app.domain.vo.BoardVO" alias="boardVO"/>
         <typeAlias type="com.example.app.domain.vo.BoardDTO" alias="boardDTO"/>
